@@ -1,6 +1,7 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -18,7 +19,7 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
 
   // Emitted when the window is closed.
   win.on('closed', () => {
@@ -53,3 +54,14 @@ app.on('activate', () => {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+// Asynchronous read
+fs.readFile('TODO.txt', function (err, data) {
+  if (err) {
+    return console.error(err);
+  }
+  console.log("Asynchronous read: " + data.toString());
+});
+// Synchronous read
+//var data = fs.readFileSync('input.txt');
+//console.log("Synchronous read: " + data.toString());
+//console.log("Program Ended");
