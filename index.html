@@ -3,14 +3,10 @@
   <head>
     <meta charset="UTF-8">
     <title>Hello World!</title>
-    <script src="app.js"></script>
   </head>
   <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-    <button type="button" id="btn-load-file">Load File</button>
+    <main id='app'></main>
     <pre id="file-content"></pre>
+    <script src="./dist/app.bundle.js"></script>
   </body>
 </html>
