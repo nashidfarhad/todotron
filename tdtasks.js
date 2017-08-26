@@ -1,5 +1,5 @@
 require('tdtask.js')
-class tdtasks {
+class TdTasks {
 			
 	constructor() {
 		this.tasks = new tdtask[];
@@ -8,5 +8,9 @@ class tdtasks {
 	//function to push a task into the array, takes a tdtask object
 	function push(task){
 		this.tasks.push(task);
+	}
+
+	function getTask(){
+		return this.task;
 	}
 }

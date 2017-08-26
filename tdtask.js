@@ -1,4 +1,4 @@
-class tdtask {
+class TdTask {
 	var task : String;
 	var createdDate : Date;
 	var endDate : Date;
@@ -10,6 +10,8 @@ class tdtask {
 	var priority : String;
 	var isDone : boolean;
 	var notes : String; // to store additional notes on a task, keyvalue [notes:String]
+	var recur : String;
+	var repeat : int;
 		
 	constructor(task, createdDate, endDate, dueDate, taskID, PID, project, context, priority, isDone) {
 		this.task = task;
