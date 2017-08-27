@@ -1,5 +1,6 @@
 # Custom ignores
 package-lock.json
+dist/
 # end Custom ignores
 
 # Created by https://www.gitignore.io/api/node

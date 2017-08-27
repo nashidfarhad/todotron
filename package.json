@@ -4,13 +4,23 @@
   "description": "TODO.TXT application developed with electron",
   "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch":"webpack --progress --color --watch",
+    "build":"webpack",
     "start": "./node_modules/.bin/electron ."
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
+<<<<<<< HEAD
     "electron": "^1.7.5"
+=======
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-react": "^6.24.1",
+    "electron": "^1.7.5",
+    "webpack": "^3.5.5",
+    "webpack-dev-server": "^2.7.1"
+>>>>>>> 1c331c0fa86729a2da47225d562830dcb7f4b888
   },
   "dependencies": {
     "react": "^15.6.1",
