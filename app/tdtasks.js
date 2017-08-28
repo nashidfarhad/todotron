@@ -6,11 +6,11 @@ class TdTasks {
 	}
 	
 	//function to push a task into the array, takes a tdtask object
-	function push(task){
+	push(task){
 		this.tasks.push(task);
 	}
 
-	function getTask(){
+	get getTask(){
 		return this.task;
 	}
 }
