@@ -51,17 +51,3 @@ app.on('activate', () => {
     createWindow()
   }
 })
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.
-// Asynchronous read
-fs.readFile('TODO.txt', function (err, data) {
-  if (err) {
-    return console.error(err);
-  }
-  console.log("Asynchronous read: " + data.toString());
-});
-// Synchronous read
-//var data = fs.readFileSync('input.txt');
-//console.log("Synchronous read: " + data.toString());
-//console.log("Program Ended");
