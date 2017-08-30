@@ -1,6 +1,8 @@
-const {remote} = require('electron');
+export const initiateMainMenu = function() {
+
+const {remote} = electronRequire('electron');
 const {Menu,dialog} = remote;
-var fs = require('fs');
+var fs = electronRequire('fs');
 const template = [
     {
         label: 'File',
@@ -123,3 +125,4 @@ if (process.platform === 'darwin') {
 
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
+};
