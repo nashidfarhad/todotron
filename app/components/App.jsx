@@ -1,9 +1,15 @@
 import React from 'react';
+import {initiateMainMenu } from '../menu';
 
-const path = require('path')
-const fs = require('fs');
+const path = electronRequire('path');
+const fs = electronRequire('fs');
+const {remote} = electronRequire('electron');
+const {dialog} = remote;
 
 export class App extends React.Component{
+  componentWillMount() {
+    initiateMainMenu();
+  }
   loadFile(){
         fs.readFile(path.resolve('./TODO.txt'), function (err, data) {
             if (err) {
