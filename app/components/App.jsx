@@ -1,5 +1,6 @@
 import React from 'react';
 import {initiateMainMenu } from '../menu';
+import {ToolBar} from './ToolBar';
 
 const path = electronRequire('path');
 const fs = electronRequire('fs');
@@ -31,6 +32,7 @@ export class App extends React.Component{
   render(){
     return(
       <div id="main-div">
+      <ToolBar />
       <div className = "left-pane">
       <h1 className="todotron">ToDoTron</h1>
       </div>
