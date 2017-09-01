@@ -32,7 +32,7 @@ export class App extends React.Component{
     return(
       <div id="main-div">
       <div className = "left-pane">
-      <h1>ToDoTron</h1>
+      <h1 className="todotron">ToDoTron</h1>
       </div>
       <div className = "right-pane">
       <button onClick={this.loadFile}>Load File</button>
