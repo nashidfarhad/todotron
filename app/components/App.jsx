@@ -7,8 +7,17 @@ const {remote} = electronRequire('electron');
 const {dialog} = remote;
 
 export class App extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      tdtasks : []
+    };
+  }
   componentWillMount() {
     initiateMainMenu();
+  }
+  componentWillReceiveProps(nextProps) {
+    this.setState({tdtasks: nextProps.tdtasks});
   }
   loadFile(){
         fs.readFile(path.resolve('./TODO.txt'), function (err, data) {
@@ -22,8 +31,8 @@ export class App extends React.Component{
   render(){
     return(
       <div>
-      <h1>Hello World</h1>
       <button onClick={this.loadFile}>Load File</button>
+      <h1>Total Task: {this.state.tdtasks.length}</h1>
       </div>
     );
   }
