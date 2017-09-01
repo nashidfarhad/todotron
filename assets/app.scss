@@ -1,4 +1,31 @@
-$background: blue;
-body{
-	background: $background;
+$background-color: blue;
+$left-pane-width: 40%;
+$right-pane-width: 60%;
+$min-height: 600px;
+$border-width: 2px;
+$border-type: solid;
+
+* {
+	box-sizing: border-box;
+	padding: 0px;
+	margin: 0px;
+}
+
+div {
+	&.left-pane,
+	&.right-pane {
+		float: left;
+		background-color: $background-color;
+		min-height: $min-height;
+		border: $border-width $border-type;
+	}
+	&.left-pane {
+		min-width: $left-pane-width;
+	}
+	&.right-pane {
+		min-width: $right-pane-width;
+	}
+	&#main-div {
+		min-width: 100%;
+	}
 }
