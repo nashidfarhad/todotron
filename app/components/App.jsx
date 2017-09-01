@@ -1,4 +1,5 @@
 import React from 'react';
+import { TdTaskComponent } from './TdTaskComponent';
 import {initiateMainMenu } from '../menu';
 
 const path = electronRequire('path');
@@ -29,10 +30,12 @@ export class App extends React.Component{
         });
   }
   render(){
+    let tasksJsx = this.state.tdtasks.map((task, index) => <TdTaskComponent tdtask={task} key={index} />)
     return(
       <div>
       <button onClick={this.loadFile}>Load File</button>
       <h1>Total Task: {this.state.tdtasks.length}</h1>
+      {tasksJsx}
       </div>
     );
   }
