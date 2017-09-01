@@ -1,8 +1,12 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Parser} from './parser';
+import {App} from './components/App';
 export const initiateMainMenu = function() {
 
 const {remote} = electronRequire('electron');
 const {Menu,dialog} = remote;
-var fs = electronRequire('fs');
+const fs = electronRequire('fs');
 const template = [
     {
         label: 'File',
@@ -10,7 +14,11 @@ const template = [
             {
                 label: 'Open',
                 click() {
-                    dialog.showOpenDialog(function(fileNames) {
+                    dialog.showOpenDialog({
+                        filters:[
+                            {name: 'Todo Text Files', extensions: ['txt']}
+                        ]
+                    },function(fileNames) {
                         if (fileNames === undefined) {
                             dialog.showErrorBox("Error", "No file selected");
                         } else {
@@ -19,7 +27,7 @@ const template = [
                                 ReactDOM.render(
                                     <App tdtasks="{tdtasks}"/>,
                                     document.getElementById('app'));
-                            });
+                                });
                         }
                     });
                 }
