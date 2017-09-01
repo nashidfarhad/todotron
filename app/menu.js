@@ -12,7 +12,7 @@ const template = [
                 click() {
                     dialog.showOpenDialog(function(fileNames) {
                         if (fileNames === undefined) {
-                            console.log("No file selected");
+                            dialog.showErrorBox("Error", "No file selected");
                         } else {
                                 let parser = new Parser(fileNames[0]);
                                 parser.getParsedTodoList(function(tdtasks){
