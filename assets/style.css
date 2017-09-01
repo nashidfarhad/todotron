@@ -4,15 +4,16 @@
   margin: 0px;
 }
 
-div.left-pane div.right-pane {
+div.left-pane, div.right-pane {
   float: left;
-  background-color: blue;
+  background-color: lightgrey;
   min-height: 600px;
   border: 2px solid;
 }
 
 div.left-pane {
   min-width: 40%;
+  clear: left;
 }
 
 div.right-pane {
@@ -21,4 +22,14 @@ div.right-pane {
 
 div#main-div {
   min-width: 100%;
+}
+
+div.toolbar {
+  min-width: 100%;
+  height: 40px;
+  background-color: #4682b4;
+}
+
+.todotron {
+  font-family: 'Sedgwick Ave Display', cursive;
 }
