@@ -14,11 +14,11 @@ const template = [
                         if (fileNames === undefined) {
                             console.log("No file selected");
                         } else {
-                            fs.readFile(fileNames[0], function(err, data) {
-                                if (err) {
-                                    return console.error(err);
-                                }
-                                document.getElementById('file-content').innerText = data.toString();
+                                let parser = new Parser(fileNames[0]);
+                                parser.getParsedTodoList(function(tdtasks){
+                                ReactDOM.render(
+                                    <App tdtasks="{tdtasks}"/>,
+                                    document.getElementById('app'));
                             });
                         }
                     });
