@@ -30,9 +30,14 @@ export class App extends React.Component{
   }
   render(){
     return(
-      <div>
+      <div id="main-div">
+      <div class = "left-pane">
+      <h1>ToDoTron</h1>
+      </div>
+      <div class = "right-pane">
       <button onClick={this.loadFile}>Load File</button>
       <h1>Total Task: {this.state.tdtasks.length}</h1>
+      </div>
       </div>
     );
   }

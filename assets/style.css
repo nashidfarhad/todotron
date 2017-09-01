@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+div.left-pane div.right-pane {
+  float: left;
+  background-color: blue;
+  min-height: 600px;
+  border: 2px solid;
+}
+
+div.left-pane {
+  min-width: 40%;
+}
+
+div.right-pane {
+  min-width: 60%;
+}
+
+div#main-div {
+  min-width: 100%;
+}
