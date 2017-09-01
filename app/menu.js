@@ -25,7 +25,7 @@ const template = [
                                 let parser = new Parser(fileNames[0]);
                                 parser.getParsedTodoList(function(tdtasks){
                                 ReactDOM.render(
-                                    <App tdtasks="{tdtasks}"/>,
+                                    <App tdtasks={tdtasks}/>,
                                     document.getElementById('app'));
                                 });
                         }
