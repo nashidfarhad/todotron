@@ -13,7 +13,7 @@ export class TdTask {
 	// var recur : String;
 	// var repeat : int;
 
-	constructor(task, createdDate, endDate, dueDate, taskID, PID, projects, contexts, priority, isDone) {
+	constructor(task, createdDate, endDate, dueDate, taskID, PID, projects, contexts, priority, isDone, tags) {
 		this.task = task;
 		this.createdDate = createdDate;
 		this.endDate = endDate;
@@ -24,6 +24,7 @@ export class TdTask {
 		this.contexts = contexts;
 		this.priority = priority;
 		this.isDone = isDone;
+		this.tags = tags;
 	}
 
 	/*
