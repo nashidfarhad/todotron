@@ -33,15 +33,12 @@ export class Parser {
 		let tokens = taskLine.split(' '); // each word is a token
 		let tdTask = new TdTask();
 		let taskString = '';
-		let currentTagName = '';
 
 		if(tokens.length !== 0) {
 			for(var index = 0; index < tokens.length; index++) {
 				//check if task is complete
 				if (index == 0 && tokens[index] === 'x') {
 					tdTask.isDone = true;
-					currentTagName = '';
-					tdTask.tokens.push(new TaskTo)
 					continue;
 				}
 				else if (index < 1)
@@ -49,7 +46,6 @@ export class Parser {
 
 				if(index < 2 && Parser.priorityRegex.test(tokens[index])) {
 					tdTask.priority = tokens[index];
-					currentTagName = '';
 					continue;
 				}
 
@@ -60,7 +56,6 @@ export class Parser {
 					}
 					else
 						tdTask.createdDate = tokens[index];
-					currentTagName = '';
 					continue;
 				}
 
@@ -68,7 +63,6 @@ export class Parser {
 					if(tdTask.contexts == null)
 						tdTask.contexts = [];
 					tdTask.contexts.push(tokens[index]);
-					currentTagName = '';
 					continue;
 				}
 
@@ -76,7 +70,6 @@ export class Parser {
 					if(tdTask.projects == null)
 						tdTask.projects = [];
 					tdTask.projects.push(tokens[index]);
-					currentTagName = '';
 					continue;
 				}
 
@@ -87,7 +80,6 @@ export class Parser {
 					let tagTokens = tokens[index].split(':');
 					tdTask.tags[tagTokens[0]] = tagTokens[1];
 					tdTask.dueDate = tagTokens[1];
-					currentTagName = '';
 					continue;
 				}
 
@@ -101,11 +93,7 @@ export class Parser {
 				}
 				// if execution comes here that means the token was not
 				// parsed
-				if(currentTagName.length === 0)
 					taskString += ' ' + tokens[index];
-				else
-					tdTask.tags[currentTagName] += ' ' + tokens[index];
-
 			}
 		}
 		if(taskString.length !== 0)
