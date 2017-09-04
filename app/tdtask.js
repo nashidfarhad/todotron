@@ -1,4 +1,4 @@
-class TdTask {
+export class TdTask {
 	// var task : String;
 	// var createdDate : Date;
 	// var endDate : Date;
