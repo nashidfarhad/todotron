@@ -6,7 +6,7 @@ $border-width: 2px;
 $border-type: solid;
 $toolbar-height: 40px;
 $toolbar-background-color: #4682b4;
-$icon-size: 12px;
+$icon-size: 35px;
 
 * {
 	box-sizing: border-box;
@@ -47,5 +47,7 @@ svg {
 	&.icon {
 		width: $icon-size;
 		height: $icon-size;
+		float: left;
+		fill: green;
 	}
 }
