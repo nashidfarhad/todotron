@@ -1,5 +1,6 @@
 import { TdTask } from './tdtask';
 import { TaskToken } from './tasktoken';
+import { TokenTypes } from './tokentypes';
 const { remote } = electronRequire('electron');
 const { Menu, dialog } = remote;
 const fs = electronRequire('fs');
@@ -39,6 +40,7 @@ export class Parser {
 				//check if task is complete
 				if (index == 0 && tokens[index] === 'x') {
 					tdTask.isDone = true;
+					tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION));
 					continue;
 				}
 				else if (index < 1)
@@ -46,16 +48,21 @@ export class Parser {
 
 				if(index < 2 && Parser.priorityRegex.test(tokens[index])) {
 					tdTask.priority = tokens[index];
+					tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.PRIORITY));
 					continue;
 				}
 
 				if (index < 4 && Parser.dateRegex.test(tokens[index])) {
 					if(Parser.dateRegex.test(tokens[index + 1])) {
 						tdTask.endDate = tokens[index];
+						tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
 						tdTask.createdDate = tokens[++index];
+						tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
 					}
-					else
+					else {
 						tdTask.createdDate = tokens[index];
+						tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+					}
 					continue;
 				}
 
@@ -63,6 +70,7 @@ export class Parser {
 					if(tdTask.contexts == null)
 						tdTask.contexts = [];
 					tdTask.contexts.push(tokens[index]);
+					tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CONTEXT));
 					continue;
 				}
 
@@ -70,6 +78,7 @@ export class Parser {
 					if(tdTask.projects == null)
 						tdTask.projects = [];
 					tdTask.projects.push(tokens[index]);
+					tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.PROJECT));
 					continue;
 				}
 
@@ -80,6 +89,7 @@ export class Parser {
 					let tagTokens = tokens[index].split(':');
 					tdTask.tags[tagTokens[0]] = tagTokens[1];
 					tdTask.dueDate = tagTokens[1];
+					tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.TAG));
 					continue;
 				}
 
@@ -88,12 +98,13 @@ export class Parser {
 						tdTask.tags = {}; //tags will be a dictionary
 					let tagTokens = tokens[index].split(':');
 					tdTask.tags[tagTokens[0]] = tagTokens[1];
-					currentTagName = tagTokens[0];
+					tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.TAG));
 					continue;
 				}
 				// if execution comes here that means the token was not
 				// parsed
-					taskString += ' ' + tokens[index];
+				taskString += ' ' + tokens[index];
+				tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.NORMAL));
 			}
 		}
 		if(taskString.length !== 0)
