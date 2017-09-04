@@ -1,4 +1,5 @@
 import { TdTask } from './tdtask';
+import { TaskToken } from './tasktoken';
 const { remote } = electronRequire('electron');
 const { Menu, dialog } = remote;
 const fs = electronRequire('fs');
@@ -40,6 +41,7 @@ export class Parser {
 				if (index == 0 && tokens[index] === 'x') {
 					tdTask.isDone = true;
 					currentTagName = '';
+					tdTask.tokens.push(new TaskTo)
 					continue;
 				}
 				else if (index < 1)

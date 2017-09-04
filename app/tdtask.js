@@ -27,6 +27,7 @@ export class TdTask {
 		this.priority = priority;
 		this.isDone = isDone;
 		this.tags = tags;
+		this.tokens = [];
 	}
 
 	isDue() {
