@@ -1,3 +1,5 @@
+import { Parser } from './parser';
+
 export class TdTask {
 	// var task : String;
 	// var createdDate : Date;
@@ -25,6 +27,13 @@ export class TdTask {
 		this.priority = priority;
 		this.isDone = isDone;
 		this.tags = tags;
+	}
+
+	isDue() {
+		if(this.dueDate != null && Parser.dateRegex.test(this.dueDate)) {
+			return ((new Date() - new Date(this.dueDate)) > 0);
+		}
+		return false;
 	}
 
 	/*
