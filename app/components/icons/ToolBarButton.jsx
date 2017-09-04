@@ -4,6 +4,7 @@ export class ToolBarButton extends React.Component {
   constructor(props) {
     super(props);
   }
+
   render() {
     return (
       <svg viewBox = "-1 -1 9 9" className="icon">
