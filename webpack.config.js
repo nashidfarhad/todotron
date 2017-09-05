@@ -1,4 +1,5 @@
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: {
@@ -27,7 +28,13 @@ module.exports = {
         path: __dirname + '/dist'
     },
     plugins: [
-        new ExtractTextPlugin('style.css')
+        new ExtractTextPlugin('style.css'),
+        new CopyWebpackPlugin([
+            {
+                from: __dirname + '/node_modules/open-iconic/sprite/open-iconic.svg',
+                to: __dirname + '/dist/open-iconic.svg'
+            }
+        ])
     ],
     target: 'node',
     resolve: {
