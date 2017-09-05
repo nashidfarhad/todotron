@@ -7,13 +7,13 @@ export class ToolBar extends React.Component {
   constructor(props) {
     super(props);
   }
-  render(){
+  render() {
     return (
       <div className="toolbar">
-        <ToolBarButton iconName = "book"/>
-        <ToolBarButton iconName = "caret-left"/>
-        <ToolBarButton iconName = "caret-right"/>
-        <IconPlus color = "blue" classes = "icon"/>;
+        <ToolBarButton iconName="book" fillColor="red"/>
+        <ToolBarButton iconName="caret-left" fillColor="green"/>
+        <ToolBarButton iconName="caret-right" fillColor="yellow"/>
+        <IconPlus color="blue" classes="icon"/>;
       </div>
     );
   }
