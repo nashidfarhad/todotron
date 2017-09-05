@@ -82,8 +82,8 @@ export class TdTask {
     }
 
     isDue() {
-        if (this.dueDate != null && Parser.dateRegex.test(this.dueDate)) {
-            return ((new Date() - new Date(this.dueDate)) > 0);
+        if (this.dueDate != null) {
+            return ((new Date() - this.dueDate) > 0);
         }
         return false;
     }
