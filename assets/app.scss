@@ -1,0 +1,56 @@
+$background-color: lightgrey;
+$left-pane-width: 40%;
+$right-pane-width: 60%;
+$pane-height: 100vh;
+$border-width: 2px;
+$border-type: solid;
+$toolbar-height: 40px;
+$toolbar-background-color: #4682b4;
+$icon-size: 35px;
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+div {
+	&.left-pane,
+	&.right-pane {
+		float: left;
+		background-color: $background-color;
+		height: calc(#{$pane-height} - #{$toolbar-height});
+		border: $border-width $border-type;
+	}
+
+	&.left-pane {
+		min-width: $left-pane-width;
+		clear: left;
+	}
+
+	&.right-pane {
+		min-width: $right-pane-width;
+	}
+
+	&#main-div {
+		min-width: 100%;
+	}
+
+	&.toolbar {
+		min-width: 100%;
+		height: $toolbar-height;
+		background-color: $toolbar-background-color;
+	}
+}
+
+.todotron {
+	font-family: 'Sedgwick Ave Display', cursive;
+}
+
+svg {
+	&.icon {
+		width: $icon-size;
+		height: $icon-size;
+		float: left;
+	}
+}

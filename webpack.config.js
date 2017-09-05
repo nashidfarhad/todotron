@@ -1,5 +1,11 @@
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 module.exports = {
-    entry: __dirname + '/app/app.js',
+    entry: {
+        app: [
+        __dirname + '/app/app.js',
+        __dirname + '/assets/app.scss'
+    ]},
     node: {
         __filename: true,
         __dirname: true
@@ -9,12 +15,20 @@ module.exports = {
             test: /\.(js|jsx)$/,
             exclude: /node_modules/,
             loader: 'babel-loader'
-        }]
+        }, {
+            test: /\.scss$/,
+            use: ExtractTextPlugin.extract(
+                ['css-loader', 'sass-loader']
+            )
+        }],
     },
     output: {
-        filename: 'app.bundle.js',
+        filename: '[name].bundle.js',
         path: __dirname + '/dist'
     },
+    plugins: [
+        new ExtractTextPlugin('style.css')
+    ],
     target: 'node',
     resolve: {
         extensions: [".webpack.js", ".web.js", ".js", ".json", ".jsx"]
