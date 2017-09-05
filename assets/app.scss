@@ -7,6 +7,10 @@ $border-type: solid;
 $toolbar-height: 40px;
 $toolbar-background-color: #4682b4;
 $icon-size: 35px;
+$complete-color: grey;
+$context-color: green;
+$project-color: blue;
+$due-color: red;
 
 * {
 	box-sizing: border-box;
@@ -52,5 +56,23 @@ svg {
 		width: $icon-size;
 		height: $icon-size;
 		float: left;
+	}
+}
+
+.tdtask {
+	&.complete {
+		text-decoration: line-through;
+		color: $complete-color;
+	}
+	&.due {
+		color: $due-color;
+	}
+	.token {
+		&.context {
+			color: $context-color;
+		}
+		&.project {
+			color: $project-color;
+		}
 	}
 }
