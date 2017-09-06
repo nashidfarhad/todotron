@@ -20,12 +20,12 @@ export class Parser {
                 input: fs.createReadStream(this.todoFileName)
             });
 
-            let lines = [];
+            let tdtasks = [];
 
             rl.on('line', function (line) {
-                lines.push(that.parseTdTask(line));
+                tdtasks.push(that.parseTdTask(line));
             }).on('close', function () {
-                callback(lines);
+                callback(tdtasks);
             });
         }
     }
