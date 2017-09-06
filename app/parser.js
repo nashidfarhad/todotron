@@ -50,7 +50,7 @@ export class Parser {
                 if (index < 4 && Parser.dateRegex.test(tokens[index])) {
                     if (Parser.dateRegex.test(tokens[index + 1])) {
                         tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
-                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                        tdTask.tokens.push(new TaskToken(tokens[++index], TokenTypes.CREATION_DATE));
                     } else {
                         tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
                     }
