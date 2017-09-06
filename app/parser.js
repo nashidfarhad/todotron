@@ -1,10 +1,10 @@
 import { TdTask } from './tdtask';
 import { TaskToken } from './tasktoken';
 import { TokenTypes } from './tokentypes';
-const { remote } = electronRequire('electron');
+const { remote } = require('electron');
 const { Menu, dialog } = remote;
-const fs = electronRequire('fs');
-const readline = electronRequire('readline');
+const fs = require('fs');
+const readline = require('readline');
 
 export class Parser {
     constructor(fileName) {
