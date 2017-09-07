@@ -1,11 +1,11 @@
 $background-color: lightgrey;
-$left-pane-width: 40%;
-$right-pane-width: 60%;
+$left-pane-width: 35%;
+$right-pane-width: 65%;
 $pane-height: 100vh;
 $border-width: 2px;
 $border-type: solid;
 $toolbar-height: 40px;
-$toolbar-background-color: #4682b4;
+$toolbar-background-color: #C2C7CA;
 $icon-size: 35px;
 $complete-color: grey;
 $context-color: green;
@@ -34,6 +34,7 @@ div {
 
 	&.right-pane {
 		min-width: $right-pane-width;
+		border: inset;
 	}
 
 	&#main-div {
@@ -44,6 +45,7 @@ div {
 		min-width: 100%;
 		height: $toolbar-height;
 		background-color: $toolbar-background-color;
+		border: grey outset;
 	}
 }
 

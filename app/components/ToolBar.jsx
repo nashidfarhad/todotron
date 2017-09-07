@@ -13,7 +13,7 @@ export class ToolBar extends React.Component {
                 <ToolBarButton iconName="book" fillColor="red"/>
                 <ToolBarButton iconName="caret-left" fillColor="green"/>
                 <ToolBarButton iconName="caret-right" fillColor="yellow"/>
-                <IconPlus color="blue" classes="icon"/>;
+                <IconPlus color="blue" classes="icon"/>
             </div>
         );
     }
