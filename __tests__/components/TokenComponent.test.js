@@ -8,7 +8,7 @@ describe('TokenComponent', () => {
     test('shows token string correctly', () => {
 
         let taskToken = new TaskToken('abc', TokenTypes.NORMAL);
-        // Render a checkbox with label in the document
+
         const tokenComp = shallow( 
             <TokenComponent token = { taskToken } />
         );
@@ -18,7 +18,7 @@ describe('TokenComponent', () => {
     test('default css class is "token"', () => {
 
         let taskToken = new TaskToken('abc', TokenTypes.NORMAL);
-        // Render a checkbox with label in the document
+
         const tokenComp = shallow( 
             <TokenComponent token = { taskToken } />
         );
@@ -28,7 +28,7 @@ describe('TokenComponent', () => {
     test('context token has css class "token" & "context"', () => {
 
         let taskToken = new TaskToken('abc', TokenTypes.CONTEXT);
-        // Render a checkbox with label in the document
+
         const tokenComp = shallow( 
             <TokenComponent token = { taskToken } />
         );
@@ -39,7 +39,7 @@ describe('TokenComponent', () => {
     test('project token has css class "token" & "project"', () => {
 
         let taskToken = new TaskToken('abc', TokenTypes.PROJECT);
-        // Render a checkbox with label in the document
+
         const tokenComp = shallow( 
             <TokenComponent token = { taskToken } />
         );
