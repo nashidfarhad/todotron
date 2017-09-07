@@ -1,4 +1,3 @@
-const electronRequire = require;
 import { Parser } from '../app/parser';
 import { TokenTypes } from '../app/tokentypes';
 
