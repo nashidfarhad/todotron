@@ -77,7 +77,7 @@ test("second date should not be parsed as date token if there's other tokens bet
         "x (A) 2016-09-06 abc 2016-09-06 bla bla bal jslfjsdlfjslfjl"
     ].forEach((tdTaskLine) => {
         let tdtask = parser.parseTdTask(tdTaskLine);
-        expect(tdtask.tokens.filter(token => token.tokenType === TokenTypes.CREATION_DATE)).toBe(0);
+        expect(tdtask.tokens.filter(token => token.tokenType === TokenTypes.CREATION_DATE).length).toBe(0);
     });
 });
 
