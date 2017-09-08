@@ -10,10 +10,15 @@ export class ToolBar extends React.Component {
     render() {
         return (
             <div className="toolbar">
-                <ToolBarButton iconName="book" fillColor="red"/>
-                <ToolBarButton iconName="caret-left" fillColor="green"/>
-                <ToolBarButton iconName="caret-right" fillColor="yellow"/>
-                <IconPlus color="blue" classes="icon"/>
+                <ToolBarButton iconName="file" fillColor="lightgrey"/>
+                <ToolBarButton iconName="folder" fillColor="lightgrey"/>
+                <ToolBarButton iconName="hard-drive" fillColor="lightgrey"/>
+                <ToolBarButton iconName="action-redo" fillColor="lightgrey"/>
+                <ToolBarButton iconName="action-undo" fillColor="lightgrey"/>
+                <ToolBarButton iconName="circle-check" fillColor="lightgrey"/>
+                <ToolBarButton iconName="arrow-circle-top" fillColor="lightgrey"/>
+                <ToolBarButton iconName="arrow-circle-bottom" fillColor="lightgrey"/>
+                <ToolBarButton iconName="trash" fillColor="lightgrey"/>
             </div>
         );
     }

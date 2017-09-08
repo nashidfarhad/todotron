@@ -37,10 +37,11 @@ export class App extends React.Component {
                 <ToolBar/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
-                </div>
-                <div className="right-pane">
-                    <button onClick={this.loadFile}>Load File</button>
                     <h1>Total Task: {this.state.tdtasks.length}</h1>
+                </div>
+                <div className="mid-pane">
+                </div>
+                <div className="right-pane">                                        
                     {tasksJsx}
                 </div>
             </div>

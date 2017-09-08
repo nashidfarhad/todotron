@@ -10,10 +10,10 @@ export class ToolBarButton extends React.Component {
     render() {
         const {iconName, fillColor} = this.props;
         return (
-            <svg viewBox="-1 -1 9 9" className="icon" style={{
+            <svg viewBox="-1 -1 9 9" className={"icon "+ iconName} style={{
                 fill: fillColor
             }}>
-                <use xlinkHref={path.resolve("./dist/open-iconic.svg") + "#" + iconName} className="icon-account-login"/>
+                <use xlinkHref={path.resolve("./dist/open-iconic.svg") + "#" + iconName} className={iconName + "-button"}/>
             </svg>
         );
     }
@@ -21,7 +21,7 @@ export class ToolBarButton extends React.Component {
 
 ToolBarButton.defaultProps = {
     iconName: '',
-    fillColor: 'black'
+    fillColor: 'lightgrey'
 };
 
 ToolBarButton.PropTypes = {

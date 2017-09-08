@@ -1,12 +1,13 @@
 $background-color: lightgrey;
-$left-pane-width: 35%;
-$right-pane-width: 65%;
+$left-pane-width: 30%;
+$right-pane-width: 69%;
+$mid-pane-width: 1%;
 $pane-height: 100vh;
 $border-width: 2px;
 $border-type: solid;
-$toolbar-height: 40px;
-$toolbar-background-color: #C2C7CA;
-$icon-size: 35px;
+$toolbar-height: 30px;
+$toolbar-background-color: #2E2F30;
+$icon-size: 25px;
 $complete-color: grey;
 $context-color: green;
 $project-color: blue;
@@ -20,11 +21,12 @@ $due-color: red;
 
 div {
 	&.left-pane,
-	&.right-pane {
+	&.right-pane,
+	&.mid-pane {
 		float: left;
 		background-color: $background-color;
 		height: calc(#{$pane-height} - #{$toolbar-height});
-		border: $border-width $border-type;
+		border: $border-width inset;
 	}
 
 	&.left-pane {
@@ -34,7 +36,12 @@ div {
 
 	&.right-pane {
 		min-width: $right-pane-width;
-		border: inset;
+	}
+
+	&.mid-pane {
+		min-width: $mid-pane-width;
+		border: $border-width none;
+		background-color: $toolbar-background-color;
 	}
 
 	&#main-div {
@@ -45,7 +52,7 @@ div {
 		min-width: 100%;
 		height: $toolbar-height;
 		background-color: $toolbar-background-color;
-		border: grey outset;
+		//vertical-align:middle;
 	}
 }
 
