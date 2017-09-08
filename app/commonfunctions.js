@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Parser} from './parser';
 
-
 export function openFile(){
     const {remote} = electronRequire('electron');
     const {Menu,dialog} = remote;
