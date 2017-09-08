@@ -2,23 +2,35 @@
 import React from 'react';
 import {ToolBarButton} from './icons/ToolBarButton';
 import {IconPlus} from './icons/IconPlus';
+import {openFile} from '../commonfunctions';
+
+const buttonList = ["file","folder","hard-drive","action-redo","action-undo",
+                    "circle-check","arrow-circle-top","arrow-circle-bottom",
+                    "trash"];
 
 export class ToolBar extends React.Component {
     constructor(props) {
         super(props);
+        this.handleClick = this.handleClick.bind(this);
     }
+    
+    handleClick(iconName){
+        //alert(iconName + ' clicked');
+        switch(iconName){
+            case 'file':
+                openFile();
+            break;
+            default:
+                alert('Watch where you click');
+        }
+        
+    }
+
     render() {
         return (
             <div className="toolbar">
-                <ToolBarButton iconName="file" fillColor="lightgrey"/>
-                <ToolBarButton iconName="folder" fillColor="lightgrey"/>
-                <ToolBarButton iconName="hard-drive" fillColor="lightgrey"/>
-                <ToolBarButton iconName="action-redo" fillColor="lightgrey"/>
-                <ToolBarButton iconName="action-undo" fillColor="lightgrey"/>
-                <ToolBarButton iconName="circle-check" fillColor="lightgrey"/>
-                <ToolBarButton iconName="arrow-circle-top" fillColor="lightgrey"/>
-                <ToolBarButton iconName="arrow-circle-bottom" fillColor="lightgrey"/>
-                <ToolBarButton iconName="trash" fillColor="lightgrey"/>
+                {buttonList.map((iconName) => 
+                    <ToolBarButton iconName={iconName} onClick={this.handleClick}/>)}
             </div>
         );
     }

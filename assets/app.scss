@@ -54,6 +54,11 @@ div {
 		background-color: $toolbar-background-color;
 		//vertical-align:middle;
 	}
+
+	&.toolbar-button {
+		padding: 0px;
+		margin: 0px;
+	}
 }
 
 .todotron {
