@@ -1,7 +1,10 @@
 $background-color: lightgrey;
+$left-pane-color: grey;
+$mid-pane-color: darkgrey;
+$right-pane-color: lightgrey;
 $left-pane-width: 30%;
-$right-pane-width: 69%;
-$mid-pane-width: 1%;
+$right-pane-width: 65%;
+$mid-pane-width: 5%;
 $pane-height: 100vh;
 $border-width: 2px;
 $border-type: solid;
@@ -26,22 +29,24 @@ div {
 		float: left;
 		background-color: $background-color;
 		height: calc(#{$pane-height} - #{$toolbar-height});
-		border: $border-width inset;
+		border: $border-width none;
 	}
 
 	&.left-pane {
 		min-width: $left-pane-width;
+		background-color: $left-pane-color;
 		clear: left;
 	}
 
 	&.right-pane {
 		min-width: $right-pane-width;
+		background-color: $right-pane-color;
 	}
 
 	&.mid-pane {
 		min-width: $mid-pane-width;
 		border: $border-width none;
-		background-color: $toolbar-background-color;
+		background-color: $mid-pane-color;
 	}
 
 	&#main-div {
@@ -88,5 +93,12 @@ svg {
 		&.project {
 			color: $project-color;
 		}
+	}
+}
+
+pre {
+	&.line-numbers {
+		color: $toolbar-background-color;
+		text-align: right;
 	}
 }

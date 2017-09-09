@@ -17,10 +17,10 @@ export function openFile(){
                                 alert('inside showOpenDialog');
                                 let parser = new Parser(fileNames[0]);
                                 parser.getParsedTodoList(function(tdtasks){
-                                ReactDOM.render(
+                                ReactDOM.render( 
                                     <App tdtasks={tdtasks}/>,
                                     document.getElementById('app'));
-                                });
+                                }); //render call not working
                         }
                     });
 }
