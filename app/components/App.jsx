@@ -42,7 +42,9 @@ export class App extends React.Component {
                 </div>
                 <div className="right-pane">                                        
                     <LineNumbers lineNumbers={this.state.tdtasks.length} />
-                    {tasksJsx}
+                    <div className="tdtasks">
+                        {tasksJsx}
+                    </div>
                 </div>
             </div>
         );
