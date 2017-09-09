@@ -1,12 +1,22 @@
 $background-color: lightgrey;
-$left-pane-width: 40%;
-$right-pane-width: 60%;
-$pane-height: 100vh;
-$border-width: 2px;
 $border-type: solid;
-$toolbar-height: 40px;
-$toolbar-background-color: #4682b4;
-$icon-size: 35px;
+$border-width: 2px;
+$complete-color: grey;
+$context-color: green;
+$due-color: red;
+$icon-size: 25px;
+$left-pane-color: grey;
+$left-pane-max-width: 200px;
+$left-pane-width: 30%;
+$line-numbers-pane-width: 40px;
+$mid-pane-color: darkgrey;
+$mid-pane-width: 5%;
+$pane-height: 100vh;
+$project-color: blue;
+$right-pane-color: lightgrey;
+$right-pane-width: 70%;
+$toolbar-background-color: #2E2F30;
+$toolbar-height: 30px;
 
 * {
 	box-sizing: border-box;
@@ -16,20 +26,29 @@ $icon-size: 35px;
 
 div {
 	&.left-pane,
-	&.right-pane {
+	&.right-pane,
+	&.mid-pane {
 		float: left;
 		background-color: $background-color;
 		height: calc(#{$pane-height} - #{$toolbar-height});
-		border: $border-width $border-type;
+		border: $border-width none;
 	}
 
 	&.left-pane {
 		min-width: $left-pane-width;
+		background-color: $left-pane-color;
 		clear: left;
 	}
 
 	&.right-pane {
 		min-width: $right-pane-width;
+		background-color: $right-pane-color;
+	}
+
+	&.mid-pane {
+		min-width: $mid-pane-width;
+		border: $border-width none;
+		background-color: $mid-pane-color;
 	}
 
 	&#main-div {
@@ -40,7 +59,27 @@ div {
 		min-width: 100%;
 		height: $toolbar-height;
 		background-color: $toolbar-background-color;
+		//vertical-align:middle;
 	}
+
+	&.toolbar-button {
+		padding: 0px;
+		margin: 0px;
+	}
+
+	&.line-numbers {
+		color: $toolbar-background-color;
+		text-align: right;
+		padding-right: 5px;
+	}
+
+	&.line-numbers-pane {
+		height: calc(#{$pane-height} - #{$toolbar-height});
+        width: $line-numbers-pane-width;
+        position: fixed;
+        background-color: $mid-pane-color;
+	}
+
 }
 
 .todotron {
@@ -52,5 +91,29 @@ svg {
 		width: $icon-size;
 		height: $icon-size;
 		float: left;
+		cursor: pointer;
+	}
+}
+
+.tdtasks {
+	position: relative;
+	left: 40px;
+	width: calc(#{$right-pane-width} - #{$line-numbers-pane-width});
+	.tdtask {
+		&.complete {
+			text-decoration: line-through;
+			color: $complete-color;
+		}
+		&.due {
+			color: $due-color;
+		}
+		.token {
+			&.context {
+				color: $context-color;
+			}
+			&.project {
+				color: $project-color;
+			}
+		}
 	}
 }

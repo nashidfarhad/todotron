@@ -2,10 +2,11 @@ import React from 'react';
 import { TdTaskComponent } from './TdTaskComponent';
 import {initiateMainMenu } from '../menu';
 import {ToolBar} from './ToolBar';
+import {LineNumbers} from './LineNumbers';
 
-const path = electronRequire('path');
-const fs = electronRequire('fs');
-const {remote} = electronRequire('electron');
+const path = require('path');
+const fs = require('fs');
+const {remote} = require('electron');
 const {dialog} = remote;
 
 export class App extends React.Component {
@@ -37,11 +38,13 @@ export class App extends React.Component {
                 <ToolBar/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
-                </div>
-                <div className="right-pane">
-                    <button onClick={this.loadFile}>Load File</button>
                     <h1>Total Task: {this.state.tdtasks.length}</h1>
-                    {tasksJsx}
+                </div>
+                <div className="right-pane">                                        
+                    <LineNumbers lineNumbers={this.state.tdtasks.length} />
+                    <div className="tdtasks">
+                        {tasksJsx}
+                    </div>
                 </div>
             </div>
         );
