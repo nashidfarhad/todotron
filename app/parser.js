@@ -1,10 +1,10 @@
 import { TdTask } from './tdtask';
 import { TaskToken } from './tasktoken';
 import { TokenTypes } from './tokentypes';
-const { remote } = electronRequire('electron');
+const { remote } = require('electron');
 const { Menu, dialog } = remote;
-const fs = electronRequire('fs');
-const readline = electronRequire('readline');
+const fs = require('fs');
+const readline = require('readline');
 
 export class Parser {
     constructor(fileName) {
@@ -20,12 +20,12 @@ export class Parser {
                 input: fs.createReadStream(this.todoFileName)
             });
 
-            let lines = [];
+            let tdtasks = [];
 
             rl.on('line', function (line) {
-                lines.push(that.parseTdTask(line));
+                tdtasks.push(that.parseTdTask(line));
             }).on('close', function () {
-                callback(lines);
+                callback(tdtasks);
             });
         }
     }
@@ -50,7 +50,7 @@ export class Parser {
                 if (index < 4 && Parser.dateRegex.test(tokens[index])) {
                     if (Parser.dateRegex.test(tokens[index + 1])) {
                         tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
-                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                        tdTask.tokens.push(new TaskToken(tokens[++index], TokenTypes.CREATION_DATE));
                     } else {
                         tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
                     }
