@@ -4,9 +4,9 @@ import {Parser} from './parser';
 import {App} from './components/App';
 export const initiateMainMenu = function() {
 
-const {remote} = electronRequire('electron');
+const {remote} = require('electron');
 const {Menu,dialog} = remote;
-const fs = electronRequire('fs');
+const fs = require('fs');
 const template = [
     {
         label: 'File',

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-var path = electronRequire('path');
+var path = require('path');
 
 export class ToolBarButton extends React.Component {
     constructor(props) {

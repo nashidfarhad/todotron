@@ -4,9 +4,9 @@ import {initiateMainMenu } from '../menu';
 import {ToolBar} from './ToolBar';
 import {LineNumbers} from './LineNumbers';
 
-const path = electronRequire('path');
-const fs = electronRequire('fs');
-const {remote} = electronRequire('electron');
+const path = require('path');
+const fs = require('fs');
+const {remote} = require('electron');
 const {dialog} = remote;
 
 export class App extends React.Component {

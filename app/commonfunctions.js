@@ -4,9 +4,9 @@ import {Parser} from './parser';
 import {App} from './components/App';
 
 export function openFile(){
-    const {remote} = electronRequire('electron');
+    const {remote} = require('electron');
     const {Menu,dialog} = remote;
-    const fs = electronRequire('fs');
+    const fs = require('fs');
     dialog.showOpenDialog({
                         filters:[
                             {name: 'Todo Text Files', extensions: ['txt']}
