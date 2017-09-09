@@ -3,8 +3,9 @@ $left-pane-color: grey;
 $mid-pane-color: darkgrey;
 $right-pane-color: lightgrey;
 $left-pane-width: 30%;
-$right-pane-width: 65%;
+$left-pane-max-width: 200px;
 $mid-pane-width: 5%;
+$right-pane-width: 65%;
 $pane-height: 100vh;
 $border-width: 2px;
 $border-type: solid;
@@ -64,6 +65,12 @@ div {
 		padding: 0px;
 		margin: 0px;
 	}
+
+	&.line-numbers {
+		color: $toolbar-background-color;
+		text-align: right;
+		padding-right: 5px;
+	}
 }
 
 .todotron {
@@ -75,6 +82,7 @@ svg {
 		width: $icon-size;
 		height: $icon-size;
 		float: left;
+		cursor: pointer;
 	}
 }
 
@@ -93,12 +101,5 @@ svg {
 		&.project {
 			color: $project-color;
 		}
-	}
-}
-
-pre {
-	&.line-numbers {
-		color: $toolbar-background-color;
-		text-align: right;
 	}
 }
