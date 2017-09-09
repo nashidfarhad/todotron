@@ -8,7 +8,7 @@ export class LineNumbers extends React.Component{
 
     render() {
         let lineNumberList = Array.from(new Array(this.props.lineNumbers),(val,index)=>index+1).map(
-            (lineNumber) => <pre className="line-numbers">{lineNumber}</pre>
+            (lineNumber) => <div className="line-numbers">{lineNumber}</div>
         );
         
         return (
