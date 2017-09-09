@@ -4,8 +4,9 @@ $mid-pane-color: darkgrey;
 $right-pane-color: lightgrey;
 $left-pane-width: 30%;
 $left-pane-max-width: 200px;
+$line-numbers-pane-width: 40px;
 $mid-pane-width: 5%;
-$right-pane-width: 65%;
+$right-pane-width: 70%;
 $pane-height: 100vh;
 $border-width: 2px;
 $border-type: solid;
@@ -74,8 +75,9 @@ div {
 
 	&.line-numbers-pane {
 		height: calc(#{$pane-height} - #{$toolbar-height});
-        width: 40px;
-        float: left;
+        width: $line-numbers-pane-width;
+        position: fixed;
+        background-color: $mid-pane-color;
 	}
 
 }
@@ -93,21 +95,25 @@ svg {
 	}
 }
 
-.tdtask {
-	float: left;
-	&.complete {
-		text-decoration: line-through;
-		color: $complete-color;
-	}
-	&.due {
-		color: $due-color;
-	}
-	.token {
-		&.context {
-			color: $context-color;
+.tdtasks {
+	position: relative;
+	left: 40px;
+	width: calc(#{$right-pane-width} - #{$line-numbers-pane-width});
+	.tdtask {
+		&.complete {
+			text-decoration: line-through;
+			color: $complete-color;
 		}
-		&.project {
-			color: $project-color;
+		&.due {
+			color: $due-color;
+		}
+		.token {
+			&.context {
+				color: $context-color;
+			}
+			&.project {
+				color: $project-color;
+			}
 		}
 	}
 }
