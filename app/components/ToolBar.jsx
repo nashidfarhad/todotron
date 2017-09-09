@@ -1,7 +1,6 @@
 // ToolBar Component class
 import React from 'react';
 import {ToolBarButton} from './icons/ToolBarButton';
-import {IconPlus} from './icons/IconPlus';
 import {openFile} from '../commonfunctions';
 
 const buttonList = ["file","folder","hard-drive","action-redo","action-undo",
