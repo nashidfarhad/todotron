@@ -71,6 +71,13 @@ div {
 		text-align: right;
 		padding-right: 5px;
 	}
+
+	&.line-numbers-pane {
+		height: calc(#{$pane-height} - #{$toolbar-height});
+        width: 40px;
+        float: left;
+	}
+
 }
 
 .todotron {
@@ -87,6 +94,7 @@ svg {
 }
 
 .tdtask {
+	float: left;
 	&.complete {
 		text-decoration: line-through;
 		color: $complete-color;

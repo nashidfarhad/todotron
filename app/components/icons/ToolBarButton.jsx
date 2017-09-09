@@ -29,7 +29,7 @@ ToolBarButton.defaultProps = {
     fillColor: 'lightgrey'
 };
 
-ToolBarButton.PropTypes = {
+ToolBarButton.propTypes = {
     iconName: PropTypes.string.isRequired,
     fillColor: PropTypes.string,
     onClick: PropTypes.func

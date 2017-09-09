@@ -40,10 +40,8 @@ export class App extends React.Component {
                     <h1 className="todotron">ToDoTron</h1>
                     <h1>Total Task: {this.state.tdtasks.length}</h1>
                 </div>
-                <div className="mid-pane">
-                    <LineNumbers lineNumbers={this.state.tdtasks.length} />
-                </div>
                 <div className="right-pane">                                        
+                    <LineNumbers lineNumbers={this.state.tdtasks.length} />
                     {tasksJsx}
                 </div>
             </div>

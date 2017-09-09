@@ -8,17 +8,17 @@ export class LineNumbers extends React.Component{
 
     render() {
         let lineNumberList = Array.from(new Array(this.props.lineNumbers),(val,index)=>index+1).map(
-            (lineNumber) => <div keys={lineNumber} git aclassName="line-numbers">{lineNumber}</div>
+            (lineNumber) => <div key={lineNumber} className="line-numbers">{lineNumber}</div>
         );
         
         return (
-            <div>
+            <div className="line-numbers-pane">
             {lineNumberList}
             </div>
         );
     }
 }
 
-LineNumbers.Proptypes = {
+LineNumbers.propTypes = {
     lineNumbers: Proptypes.number.isRequired
 }
