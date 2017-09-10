@@ -2,6 +2,7 @@
 import React from 'react';
 import {ToolBarButton} from './icons/ToolBarButton';
 import {openFile} from '../commonfunctions';
+import { Logo } from './icons/Logo';
 
 const buttonList = ["file","folder","hard-drive","action-redo","action-undo",
                     "circle-check","arrow-circle-top","arrow-circle-bottom",
@@ -28,6 +29,7 @@ export class ToolBar extends React.Component {
     render() {
         return (
             <div className="toolbar">
+                <Logo />
                 {buttonList.map((iconName, index) => 
                     <ToolBarButton key={index} iconName={iconName} onClick={this.handleClick}/>)}
             </div>
