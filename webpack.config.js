@@ -12,6 +12,7 @@ module.exports = {
         __filename: true,
         __dirname: true
     },
+    devtool: 'source-map',
     module: {
         loaders: [{
             test: /\.(js|jsx)$/,
