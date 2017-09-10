@@ -19,10 +19,32 @@ test('priority symbol is parsed as priority token', () => {
     [
         "(A) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
         "(B) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
-        "(z) 2016-09-06 bla bla bal jslfjsdlfjslfjl"
+        "(Z) 2016-09-06 bla bla bal jslfjsdlfjslfjl"
     ].forEach((tdTaskLine) => {
         let tdtask = parser.parseTdTask(tdTaskLine);
         expect(tdtask.tokens[0].tokenType).toBe(TokenTypes.PRIORITY);
+    });
+});
+
+test('priority symbol should always be uppercase letter', () => {
+    [
+        "(a) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
+        "(b) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
+        "(z) 2016-09-06 bla bla bal jslfjsdlfjslfjl"
+    ].forEach((tdTaskLine) => {
+        let tdtask = parser.parseTdTask(tdTaskLine);
+        expect(tdtask.tokens[0].tokenType).toBe(TokenTypes.NORMAL);
+    });
+});
+
+test('priority symbol should be between A to Z', () => {
+    [
+        "(1) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
+        "(@) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
+        "(a) 2016-09-06 bla bla bal jslfjsdlfjslfjl"
+    ].forEach((tdTaskLine) => {
+        let tdtask = parser.parseTdTask(tdTaskLine);
+        expect(tdtask.tokens[0].tokenType).toBe(TokenTypes.NORMAL);
     });
 });
 
