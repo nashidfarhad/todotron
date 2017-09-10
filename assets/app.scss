@@ -65,6 +65,11 @@ div {
 	&.toolbar-button {
 		padding: 0px;
 		margin: 0px;
+    }
+
+	&.toolbar-logo {
+		padding: 0px;
+		margin: 0px;
 	}
 
 	&.line-numbers {
@@ -92,6 +97,11 @@ svg {
 		height: $icon-size;
 		float: left;
 		cursor: pointer;
+	}
+	&.logo {
+		width: 22px;
+		height: 22px;
+		float: left;
 	}
 }
 
