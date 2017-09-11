@@ -12,6 +12,7 @@ module.exports = {
         __filename: true,
         __dirname: true
     },
+    devtool: 'source-map',
     module: {
         loaders: [{
             test: /\.(js|jsx)$/,
@@ -22,6 +23,9 @@ module.exports = {
             use: ExtractTextPlugin.extract(
                 ['css-loader', 'sass-loader']
             )
+        },{
+            test: /\.woff2$/,
+            loader: 'file-loader'
         }],
     },
     output: {

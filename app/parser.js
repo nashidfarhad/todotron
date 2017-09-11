@@ -33,6 +33,9 @@ export class Parser {
     parseTdTask(taskLine) {
         let tokens = taskLine.split(' '); // each word is a token
         let tdTask = new TdTask();
+        let creationDateParsed = false;
+        let completionDateParsed = false;
+        let priorityDateParsed = false;
 
         if (tokens.length !== 0) {
             for (var index = 0; index < tokens.length; index++) {
@@ -48,11 +51,26 @@ export class Parser {
                 }
 
                 if (index < 4 && Parser.dateRegex.test(tokens[index])) {
-                    if (Parser.dateRegex.test(tokens[index + 1])) {
-                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
+                    if(index === 0 && !Parser.dateRegex.test(tokens[index + 1])) {
                         tdTask.tokens.push(new TaskToken(tokens[++index], TokenTypes.CREATION_DATE));
-                    } else {
+                        creationDateParsed = true;
+                    }
+                    else if(index === 1 && tdTask.tokens[0].tokenType === TokenTypes.COMPLETION) { 
+                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
+                        completionDateParsed = true;
+                    }
+                    else if(index === 1 && tdTask.tokens[0].tokenType === TokenTypes.PRIORITY) {
                         tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                        creationDateParsed = true;
+                    }
+                    else if (Parser.dateRegex.test(tokens[index + 1])) {
+                        if(!completionDateParsed)
+                            tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
+                        if(!creationDateParsed)
+                            tdTask.tokens.push(new TaskToken(tokens[++index], TokenTypes.CREATION_DATE));
+                    }
+                    else {
+                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.NORMAL));
                     }
                     continue;
                 }
@@ -80,5 +98,5 @@ export class Parser {
     }
 }
 
-Parser.priorityRegex = /^\([A-Za-z]{1}\)$/;
+Parser.priorityRegex = /^\([A-Z]{1}\)$/;
 Parser.dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
