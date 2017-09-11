@@ -64,6 +64,10 @@ div {
 		height: $toolbar-height;
         background-color: $toolbar-background-color;
         flex: 100%;
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: flex-start;
+        //align-items: center;
 		//vertical-align:middle;
 	}
 
