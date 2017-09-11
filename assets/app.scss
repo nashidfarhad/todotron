@@ -26,21 +26,23 @@ $toolbar-height: 30px;
 
 div {
 	&.left-pane,
-	&.right-pane,
-	&.mid-pane {
-		float: left;
+	&.right-pane {		
 		background-color: $background-color;
 		height: calc(#{$pane-height} - #{$toolbar-height});
 		border: $border-width none;
 	}
 
 	&.left-pane {
+        flex: 3 7 30%;
 		min-width: $left-pane-width;
 		background-color: $left-pane-color;
 		clear: left;
 	}
 
 	&.right-pane {
+        flex: 7 3 70%;
+        display: flex;
+        flex-flow: row nowrap;
 		min-width: $right-pane-width;
 		background-color: $right-pane-color;
 	}
@@ -52,13 +54,16 @@ div {
 	}
 
 	&#main-div {
-		min-width: 100%;
+        min-width: 100%;
+        display: flex;
+        flex-flow: row wrap;
 	}
 
 	&.toolbar {
 		min-width: 100%;
 		height: $toolbar-height;
-		background-color: $toolbar-background-color;
+        background-color: $toolbar-background-color;
+        flex: 100%;
 		//vertical-align:middle;
 	}
 
@@ -75,8 +80,7 @@ div {
 
 	&.line-numbers-pane {
 		height: calc(#{$pane-height} - #{$toolbar-height});
-        width: $line-numbers-pane-width;
-        position: fixed;
+        flex: 0 0 $line-numbers-pane-width;
         background-color: $mid-pane-color;
 	}
 
@@ -96,9 +100,7 @@ svg {
 }
 
 .tdtasks {
-	position: relative;
-	left: 40px;
-	width: calc(#{$right-pane-width} - #{$line-numbers-pane-width});
+    flex: 7 3 100%;
 	.tdtask {
 		&.complete {
 			text-decoration: line-through;
