@@ -8,6 +8,7 @@ $icon-size: 25px;
 $left-pane-color: grey;
 $left-pane-max-width: 200px;
 $left-pane-width: 30%;
+$left-pane-z-index: 2;
 $line-numbers-pane-width: 40px;
 $logo-size: 60px;
 $logo-right-shift: 5px;
@@ -47,6 +48,8 @@ div {
 		min-width: $left-pane-width;
 		background-color: $left-pane-color;
         clear: left;
+        box-shadow: 3px 0 10px rgba(0, 0, 0, .5);
+        z-index: $left-pane-z-index;
 	}
 
 	&.right-pane {
@@ -84,7 +87,10 @@ div {
 
 	&.toolbar-button {
 		padding: 0px;
-		margin: 0px;
+        margin: 0px;
+        &:hover {
+            background-color: $logo-background-color;
+        }
     }
 
 	&.toolbar-logo {
