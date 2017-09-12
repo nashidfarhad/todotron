@@ -33,46 +33,57 @@ export class Parser {
     parseTdTask(taskLine) {
         let tokens = taskLine.split(' '); // each word is a token
         let tdTask = new TdTask();
-        let creationDateParsed = false;
         let completionDateParsed = false;
-        let priorityDateParsed = false;
 
         if (tokens.length !== 0) {
             for (var index = 0; index < tokens.length; index++) {
-                //check if task is complete
-                if (index == 0 && tokens[index] === 'x') {
-                    tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION));
-                    continue;
-                }
-
-                if (index < 2 && Parser.priorityRegex.test(tokens[index])) {
-                    tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.PRIORITY));
-                    continue;
-                }
-
-                if (index < 4 && Parser.dateRegex.test(tokens[index])) {
-                    if(index === 0 && !Parser.dateRegex.test(tokens[index + 1])) {
-                        tdTask.tokens.push(new TaskToken(tokens[++index], TokenTypes.CREATION_DATE));
-                        creationDateParsed = true;
+                if (index < 4) {
+                    if (index === 0 ) {
+                        if(tokens[index] === 'x') {
+                            tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION));
+                            continue;
+                        }
+                        else if (Parser.priorityRegex.test(tokens[index])) {
+                            tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.PRIORITY));
+                            continue;
+                        }
+                        else if (Parser.dateRegex.test(tokens[index])) {
+                            tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                            continue;
+                        }
                     }
-                    else if(index === 1 && tdTask.tokens[0].tokenType === TokenTypes.COMPLETION) { 
-                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
-                        completionDateParsed = true;
+                    else if (index === 1) {
+                        if (Parser.priorityRegex.test(tokens[index]) && tdTask.isDone) {
+                            tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.PRIORITY));
+                            continue;
+                        }
+                        else if (Parser.dateRegex.test(tokens[index])) {
+                            if(tdTask.isDone) {
+                                tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
+                                completionDateParsed = true;
+                            } else
+                                tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                            continue;
+                        }
                     }
-                    else if(index === 1 && tdTask.tokens[0].tokenType === TokenTypes.PRIORITY) {
-                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
-                        creationDateParsed = true;
+                    else if (index === 2) {
+                        if (Parser.dateRegex.test(tokens[index])) {
+                            if(!completionDateParsed && tdTask.isDone) {
+                                tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
+                                completionDateParsed = true;
+                            } else
+                                tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                            continue;
+                        }
                     }
-                    else if (Parser.dateRegex.test(tokens[index + 1])) {
-                        if(!completionDateParsed)
-                            tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.COMPLETION_DATE));
-                        if(!creationDateParsed)
-                            tdTask.tokens.push(new TaskToken(tokens[++index], TokenTypes.CREATION_DATE));
+                    else if (index === 3) {
+                        if (Parser.dateRegex.test(tokens[index])) {
+                            if(completionDateParsed) {
+                                tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CREATION_DATE));
+                                continue;
+                            }
+                        }
                     }
-                    else {
-                        tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.NORMAL));
-                    }
-                    continue;
                 }
 
                 if (tokens[index][0] === '@') {
@@ -99,4 +110,4 @@ export class Parser {
 }
 
 Parser.priorityRegex = /^\([A-Z]{1}\)$/;
-Parser.dateRegex = /^\d{4}\-\d{2}\-\d{2}$/;
+Parser.dateRegex = /^\d{4}-\d{2}-\d{2}$/;

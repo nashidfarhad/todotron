@@ -54,13 +54,12 @@ test('single date at beggining is parsed as creation date', () => {
     expect(tdtask.tokens[0].tokenType).toBe(TokenTypes.CREATION_DATE);
 });
 
-test('first date is parsed as completion date when second date exists', () => {
-    ["2016-09-06 2016-09-06 bla bla bal jslfjsdlfjslfjl",
-     "x 2016-09-06 2016-09-06 bla bla bal jslfjsdlfjslfjl",
+test('first date should be parsed as completion date when task marked as complete', () => {
+    ["x 2016-09-06 2016-09-06 bla bla bal jslfjsdlfjslfjl",
      "x (A) 2016-09-06 2016-09-06 bla bla bal jslfjsdlfjslfjl"]
     .forEach((tdtaskline, index) => {
         let tdtask = parser.parseTdTask(tdtaskline);
-        expect(tdtask.tokens[index].tokenType).toBe(TokenTypes.COMPLETION_DATE);
+        expect(tdtask.tokens[index + 1].tokenType).toBe(TokenTypes.COMPLETION_DATE);
     });
 });
 
@@ -97,13 +96,11 @@ test("third date should not be parsed as date token", () => {
 
 test("second date should not be parsed as date token if there's other tokens between first and second date", () => {
     [
-        "(A) 2016-09-06 abc 2016-09-06 bla bla bla jslfjsdlfjslfjl",
-        "2016-09-06 abc 2016-09-06 bla bla bal jslfjsdlfjslfjl",
         "x 2016-09-06 abc 2016-09-06 bla bla bal jslfjsdlfjslfjl",
         "x (A) 2016-09-06 abc 2016-09-06 bla bla bal jslfjsdlfjslfjl"
-    ].forEach((tdTaskLine) => {
+    ].forEach((tdTaskLine, index) => {
         let tdtask = parser.parseTdTask(tdTaskLine);
-        expect(tdtask.tokens.filter(token => token.tokenType === TokenTypes.CREATION_DATE).length).toBe(0);
+        expect(tdtask.tokens[index + 4].tokenType).toBe(TokenTypes.NORMAL);
     });
 });
 
