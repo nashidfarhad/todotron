@@ -5,7 +5,7 @@ export class Logo extends React.Component {
     render() {
         return (
             <div className="toolbar-logo">
-                <svg viewBox="-2 -2 130 138" className="logo" preserveAspectRatio="xMidYMid">
+                <svg height="100%" viewBox="-2 -2 138 160" className="logo" preserveAspectRatio="xMidYMid">
                     <path d=" M 79.919 60 L 130 39.976 L 109.919 110 L 69.919 140 L 79.919 60 Z " fill={this.props.fillColor}/>
                     <path d=" M 10 39.976 L 59.919 60 L 69.919 140 L 29.919 110 L 10 39.976 Z " fill={this.props.fillColor}/>
                     <path d=" M 70 12 L 130 39.976 L 10 39.976 L 70 12 Z " fill={this.props.fillColor}/>

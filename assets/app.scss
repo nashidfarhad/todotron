@@ -17,6 +17,7 @@ $right-pane-color: lightgrey;
 $right-pane-width: 70%;
 $toolbar-background-color: #2E2F30;
 $toolbar-height: 30px;
+$logo-size: 60px;
 
 @import 'fonts';
 
@@ -38,7 +39,8 @@ div {
         flex: 3 7 30%;
 		min-width: $left-pane-width;
 		background-color: $left-pane-color;
-		clear: left;
+        clear: left;
+        //padding-top: calc(#{$logo-size}/2);
 	}
 
 	&.right-pane {
@@ -62,6 +64,7 @@ div {
 	}
 
 	&.toolbar {
+        padding-left: $logo-size;
 		min-width: 100%;
 		height: $toolbar-height;
         background-color: $toolbar-background-color;
@@ -80,7 +83,16 @@ div {
 
 	&.toolbar-logo {
 		padding: 0px;
-		margin: 0px;
+        margin: 0px;
+        height: $logo-size;
+        width: $logo-size;
+        position: absolute;
+        z-index: 10;
+        background-color: $toolbar-background-color;
+        display: flex;
+        justify-content: center;
+        border-radius: calc(#{$logo-size}/2 - 0px); //0px for circle
+        box-shadow: 0 5px 5px rgba(0, 0, 0, .5)
 	}
 
 	&.line-numbers {
@@ -98,7 +110,8 @@ div {
 }
 
 .todotron {
-	font-family: 'Sedgwick Ave Display', cursive;
+    font-family: 'Sedgwick Ave Display', cursive;
+    padding-left: calc(#{$logo-size} + 10px);
 }
 
 svg {
@@ -108,11 +121,11 @@ svg {
 		float: left;
 		cursor: pointer;
 	}
-	&.logo {
-		width: 22px;
-		height: 22px;
-		float: left;
-	}
+	// &.logo {
+	// 	width: 22px;
+	// 	height: 22px;
+	// 	float: left;
+	// }
 }
 
 .tdtasks {

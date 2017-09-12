@@ -29,7 +29,6 @@ export class ToolBar extends React.Component {
     render() {
         return (
             <div className="toolbar">
-                <Logo />
                 {buttonList.map((iconName, index) => 
                     <ToolBarButton key={index} iconName={iconName} onClick={this.handleClick}/>)}
             </div>
