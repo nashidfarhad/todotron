@@ -68,7 +68,8 @@ export class TdTask {
     get priority() {
         if (this.tokens != null) {
             let tks = this.tokens.filter((token) => token.tokenType === TokenTypes.PRIORITY);
-            return tks[0].token;
+            if (tks != null && tks.length > 0)
+                return tks[0].token;
         }
         return null;
     }
