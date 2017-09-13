@@ -35,15 +35,15 @@ $toolbar-z-index: 5;
 	margin: 0;
 }
 
-div {
-	&.left-pane,
-	&.right-pane {
-		background-color: $background-color;
-		height: calc(#{$pane-height} - #{$toolbar-height});
-		border: $border-width none;
-	}
+@mixin pane-setup {
+    background-color: $background-color;
+    height: calc(#{$pane-height} - #{$toolbar-height});
+    border: $border-width none;
+}
 
+div {
 	&.left-pane {
+        @include pane-setup;
         flex: 3 7 30%;
 		min-width: $left-pane-width;
 		background-color: $left-pane-color;
@@ -53,17 +53,12 @@ div {
 	}
 
 	&.right-pane {
+        @include pane-setup;
         flex: 7 3 70%;
         display: flex;
         flex-flow: row nowrap;
 		min-width: $right-pane-width;
 		background-color: $right-pane-color;
-	}
-
-	&.mid-pane {
-		min-width: $mid-pane-width;
-		border: $border-width none;
-		background-color: $mid-pane-color;
 	}
 
 	&#main-div {
@@ -140,6 +135,10 @@ svg {
 .tdtasks {
     flex: 7 3 100%;
 	.tdtask {
+        &:hover{
+            background-color: lighten($right-pane-color, 20%);
+            padding-left: 5px;
+        }
 		&.complete {
 			text-decoration: line-through;
 			color: $complete-color;
