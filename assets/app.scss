@@ -8,15 +8,24 @@ $icon-size: 25px;
 $left-pane-color: grey;
 $left-pane-max-width: 200px;
 $left-pane-width: 30%;
+$left-pane-z-index: 2;
 $line-numbers-pane-width: 40px;
+$logo-size: 60px;
+$logo-right-shift: 5px;
+$logo-background-color: rgb(55, 73, 102);
+$logo-bottom-radius: calc(#{$logo-size}/2 - 0px); //0px for circle
+$logo-padding-left: calc(#{$logo-size} + 10px);
+$logo-z-index: 10;
 $mid-pane-color: darkgrey;
 $mid-pane-width: 5%;
 $pane-height: 100vh;
 $project-color: blue;
 $right-pane-color: lightgrey;
 $right-pane-width: 70%;
-$toolbar-background-color: #2E2F30;
+$toolbar-background-color: black;
 $toolbar-height: 30px;
+$toolbar-z-index: 5;
+
 
 @import 'fonts';
 
@@ -26,33 +35,30 @@ $toolbar-height: 30px;
 	margin: 0;
 }
 
-div {
-	&.left-pane,
-	&.right-pane {		
-		background-color: $background-color;
-		height: calc(#{$pane-height} - #{$toolbar-height});
-		border: $border-width none;
-	}
+@mixin pane-setup {
+    background-color: $background-color;
+    height: calc(#{$pane-height} - #{$toolbar-height});
+    border: $border-width none;
+}
 
+div {
 	&.left-pane {
+        @include pane-setup;
         flex: 3 7 30%;
 		min-width: $left-pane-width;
 		background-color: $left-pane-color;
-		clear: left;
+        clear: left;
+        box-shadow: 3px 0 10px rgba(0, 0, 0, .5);
+        z-index: $left-pane-z-index;
 	}
 
 	&.right-pane {
+        @include pane-setup;
         flex: 7 3 70%;
         display: flex;
         flex-flow: row nowrap;
 		min-width: $right-pane-width;
 		background-color: $right-pane-color;
-	}
-
-	&.mid-pane {
-		min-width: $mid-pane-width;
-		border: $border-width none;
-		background-color: $mid-pane-color;
 	}
 
 	&#main-div {
@@ -62,6 +68,7 @@ div {
 	}
 
 	&.toolbar {
+        padding-left: calc(#{$logo-size} + #{$logo-right-shift});
 		min-width: 100%;
 		height: $toolbar-height;
         background-color: $toolbar-background-color;
@@ -69,13 +76,32 @@ div {
         display: flex;
         flex-flow: row nowrap;
         justify-content: flex-start;
-        //align-items: center;
-		//vertical-align:middle;
+        box-shadow: 0 2px 3px rgba(0, 0, 0, .5);
+        z-index: $toolbar-z-index;
 	}
 
 	&.toolbar-button {
 		padding: 0px;
-		margin: 0px;
+        margin: 0px;
+        &:hover {
+            background-color: $logo-background-color;
+        }
+    }
+
+	&.toolbar-logo {
+		padding: 0px;
+        margin: 0px;
+        height: $logo-size;
+        width: $logo-size;
+        position: absolute;
+        left: $logo-right-shift;
+        z-index: $logo-z-index;
+        background-color: $logo-background-color;
+        display: flex;
+        justify-content: center;
+        border-bottom-left-radius: $logo-bottom-radius;
+        border-bottom-right-radius: $logo-bottom-radius;
+        box-shadow: 0 3px 3px rgba(0, 0, 0, .5);
 	}
 
 	&.line-numbers {
@@ -93,7 +119,8 @@ div {
 }
 
 .todotron {
-	font-family: 'Sedgwick Ave Display', cursive;
+    font-family: 'Sedgwick Ave Display', cursive;
+    padding-left: $logo-padding-left;
 }
 
 svg {
@@ -108,6 +135,10 @@ svg {
 .tdtasks {
     flex: 7 3 100%;
 	.tdtask {
+        &:hover{
+            background-color: lighten($right-pane-color, 20%);
+            padding-left: 5px;
+        }
 		&.complete {
 			text-decoration: line-through;
 			color: $complete-color;

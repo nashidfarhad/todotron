@@ -4,6 +4,7 @@ import { TdTaskComponent } from './TdTaskComponent';
 import {initiateMainMenu } from '../menu';
 import {ToolBar} from './ToolBar';
 import {LineNumbers} from './LineNumbers';
+import {Logo} from './icons/Logo';
 
 //const path = require('path'); //MARK FOR DELETION
 //const fs = require('fs'); //MARK FOR DELETION
@@ -38,6 +39,7 @@ export class App extends React.Component {
         let tasksJsx = this.state.tdtasks.map((task, index) => <TdTaskComponent tdtask={task} key={index} />)
         return (
             <div id="main-div">
+                <Logo />
                 <ToolBar/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
