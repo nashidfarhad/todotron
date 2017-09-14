@@ -15,6 +15,12 @@ test('x is parsed as completion token', () => {
     expect(tdtask.tokens[0].tokenType).toBe(TokenTypes.COMPLETION);
 });
 
+test('X is NOT parsed as completion token', () => {
+    let tdtaskline = "X 2016-09-06 bla bla bal jslfjsdlfjslfjl";
+    let tdtask = parser.parseTdTask(tdtaskline);
+    expect(tdtask.tokens[0].tokenType).not.toBe(TokenTypes.COMPLETION);
+});
+
 test('priority symbol is parsed as priority token', () => {
     [
         "(A) 2016-09-06 bla bla bal jslfjsdlfjslfjl",
