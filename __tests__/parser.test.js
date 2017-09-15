@@ -115,3 +115,61 @@ test("priority cannot be second token except when first token is x", () => {
     let tdtask = parser.parseTdTask(tdtaskline);
     expect(tdtask.tokens[1].tokenType).not.toBe(TokenTypes.PRIORITY);
 });
+
+test("context should be parsed as context", () => {
+    [
+        "test templates @krost +ringtoneissue",
+        "phone issue @impressive",
+        "router upgrade @impressive"
+    ].map((task) =>{
+        let tokens = parser.parseTdTask(task);
+        expect(tokens.tokens[2].tokenType).toBe(TokenTypes.CONTEXT);
+    });
+});
+
+test("email addresses shouldn't be parsed as context", () => {
+    [
+        "email k@kkkk.com",
+        "s's email address is s@ssss.com.au"
+    ].map((task) => {
+        let tasktokens = parser.parseTdTask(task);
+        let anyContext = false;
+        tasktokens.tokens.map((token) => {
+            if(token.tokenType === TokenTypes.CONTEXT)
+                anyContext = true;
+        });
+        expect(anyContext).toBe(false);
+    });
+});
+
+test("@ by itself shouldn't be parsed as context", () => {
+    [
+        "meet jeff @ train station",
+        "sierra is @ charlie"
+    ].map((task) => {
+        let tasktokens = parser.parseTdTask(task);
+        let anyContext = false;
+        tasktokens.tokens.forEach((token) => {
+            if(token.tokenType === TokenTypes.CONTEXT){
+                anyContext = true;
+            }
+        });
+        expect(anyContext).toBe(false);
+    });
+})
+
+test("tokens ending with @ shouldn't be context", () => {
+    [
+        "let it be@",
+        "what@ is it?"
+    ].map((task) => {
+        let tokens = parser.parseTdTask(task);
+        let anyContext = false;
+        tokens.tokens.map((token) => {
+            if(token.tokenType === TokenTypes.CONTEXT){
+                anyContext = true;
+            }
+        });
+        expect(anyContext).toBe(false);
+    });
+})
