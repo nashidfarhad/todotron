@@ -1,4 +1,4 @@
-import { TdTask } from './tdtask';
+import { Task } from './task';
 import { TaskToken } from './tasktoken';
 import { TokenTypes } from './tokentypes';
 const { remote } = require('electron');
@@ -32,7 +32,7 @@ export class Parser {
 
     parseTdTask(taskLine) {
         let tokens = taskLine.split(' '); // each word is a token
-        let tdTask = new TdTask();
+        let tdTask = new Task();
         let completionDateParsed = false;
 
         if (tokens.length !== 0) {

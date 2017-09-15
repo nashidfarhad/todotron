@@ -23,9 +23,9 @@ const template = [
                             dialog.showErrorBox("Error", "No file selected");
                         } else {
                                 let parser = new Parser(fileNames[0]);
-                                parser.getParsedTodoList(function(tdtasks){
+                                parser.getParsedTodoList(function(taskList){
                                 ReactDOM.render(
-                                    <App tdtasks={tdtasks}/>,
+                                    <App taskList={taskList}/>,
                                     document.getElementById('app'));
                                 });
                         }

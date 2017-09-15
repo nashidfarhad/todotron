@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { TokenComponent } from '../../app/components/TokenComponent';
+import { Token } from '../../app/components/Token';
 import { TaskToken } from '../../app/tasktoken';
 import { TokenTypes } from '../../app/tokentypes';
 
@@ -10,7 +10,7 @@ describe('TokenComponent', () => {
         let taskToken = new TaskToken('abc', TokenTypes.NORMAL);
 
         const tokenComp = shallow( 
-            <TokenComponent token = { taskToken } />
+            <Token token = { taskToken } />
         );
 
         expect(tokenComp.text()).toEqual('abc');
@@ -20,7 +20,7 @@ describe('TokenComponent', () => {
         let taskToken = new TaskToken('abc', TokenTypes.NORMAL);
 
         const tokenComp = shallow( 
-            <TokenComponent token = { taskToken } />
+            <Token token = { taskToken } />
         );
 
         expect(tokenComp.find('span').hasClass('token')).toBe(true);
@@ -30,7 +30,7 @@ describe('TokenComponent', () => {
         let taskToken = new TaskToken('abc', TokenTypes.CONTEXT);
 
         const tokenComp = shallow( 
-            <TokenComponent token = { taskToken } />
+            <Token token = { taskToken } />
         );
 
         expect(tokenComp.find('span').hasClass('token')).toBe(true);
@@ -41,7 +41,7 @@ describe('TokenComponent', () => {
         let taskToken = new TaskToken('abc', TokenTypes.PROJECT);
 
         const tokenComp = shallow( 
-            <TokenComponent token = { taskToken } />
+            <Token token = { taskToken } />
         );
 
         expect(tokenComp.find('span').hasClass('token')).toBe(true);

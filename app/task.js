@@ -1,7 +1,7 @@
 import { Parser } from './parser';
 import { TokenTypes } from './tokentypes';
 
-export class TdTask {
+export class Task {
     // var task : String;
     // var createdDate : Date;
     // var endDate : Date;

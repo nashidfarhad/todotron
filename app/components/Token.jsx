@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { TokenTypes } from '../tokentypes';
 
-export class TokenComponent extends React.Component {
+export class Token extends React.Component {
 	render() {
 		let classNames = ['token'];
 		if(this.props.token.tokenType == TokenTypes.CONTEXT)
@@ -13,4 +14,8 @@ export class TokenComponent extends React.Component {
 			<span className={classNames.join(' ')}>{this.props.token.token}</span>
 		);
 	}
+}
+
+Token.propTypes = {
+    token: PropTypes.object
 }
