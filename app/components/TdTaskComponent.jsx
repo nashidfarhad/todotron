@@ -1,7 +1,7 @@
 import React from 'react';
 import { TokenComponent } from './TokenComponent';
 
-export class TdTaskComponent extends React.Component {
+export class TdTaskComponent extends React.PureComponent {
 	render() {
 		let classNames = ['tdtask'];
 		if(this.props.tdtask.isDone) classNames.push('complete');
