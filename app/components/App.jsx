@@ -6,7 +6,6 @@ import {ToolBar} from './ToolBar';
 import {LineNumbers} from './LineNumbers';
 import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
-import { Parser } from '../parser';
 
 export class App extends React.Component {
     constructor(props) {
@@ -22,10 +21,9 @@ export class App extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({tdtasks: nextProps.tdtasks});
     }
-    addTask(taskLine) {
-        let parser = new Parser();
+    addTask(task) {
         let tdtsk = this.state.tdtasks.slice();
-        tdtsk.push(parser.parseTdTask(taskLine));
+        tdtsk.push(task);
         this.setState({tdtasks: tdtsk});
     }
     render() {
