@@ -17,9 +17,9 @@ export function openFile(){
                         } else {
                                 //alert('inside showOpenDialog');
                                 let parser = new Parser(fileNames[0]);
-                                parser.getParsedTodoList(function(tdtasks){
+                                parser.getParsedTodoList(function(taskList){
                                 ReactDOM.render( 
-                                    <App tdtasks={tdtasks}/>,
+                                    <App taskList={taskList}/>,
                                     document.getElementById('app'));
                                 }); //render call not working - didn't import {App}
                         }

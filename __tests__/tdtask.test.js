@@ -1,32 +1,32 @@
 import { TokenTypes } from '../app/tokentypes';
-import { TdTask } from '../app/tdtask';
+import { Task } from '../app/task';
 import { TaskToken } from '../app/tasktoken';
 
-describe('tdtask', () => {
+describe('task', () => {
     test('priority getter returns priority token', () => {
-        let tdtask = new TdTask();
-        tdtask.tokens = [
+        let task = new Task();
+        task.tokens = [
             new TaskToken('(A)', TokenTypes.PRIORITY)
         ];
 
-        expect(tdtask.priority).toBe('(A)');
+        expect(task.priority).toBe('(A)');
     });
 
     test('priority getter returns null in priority token not present', () => {
-        let tdtask = new TdTask();
-        tdtask.tokens = [
+        let task = new Task();
+        task.tokens = [
             new TaskToken('x', TokenTypes.COMPLETION)
         ];
 
-        expect(tdtask.priority).toBe(null);
+        expect(task.priority).toBe(null);
     });
 
     test('isDone getter returns correct value', () => {
-        let tdtask = new TdTask();
-        tdtask.tokens = [
+        let task = new Task();
+        task.tokens = [
             new TaskToken('x', TokenTypes.COMPLETION)
         ];
 
-        expect(tdtask.isDone).toBe(true);
+        expect(task.isDone).toBe(true);
     });
 });

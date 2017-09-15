@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { ToolBarButton } from '../../../app/components/icons/ToolBarButton';
-import { TdTask } from '../../../app/tdtask';
+import { Task } from '../../../app/task';
 import { TaskToken } from '../../../app/tasktoken';
 import { TokenTypes } from '../../../app/tokentypes';
 

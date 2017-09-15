@@ -2,7 +2,7 @@
 import React from 'react';
 import {ToolBarButton} from './icons/ToolBarButton';
 import {openFile} from '../commonfunctions';
-import { Logo } from './icons/Logo';
+//import { Logo } from './icons/Logo';
 
 const buttonList = ["file","folder","hard-drive","action-redo","action-undo",
                     "circle-check","arrow-circle-top","arrow-circle-bottom",
