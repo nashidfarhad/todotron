@@ -13,6 +13,7 @@ export class LineNumbers extends React.Component{
         
         return (
             <div className="line-numbers-pane">
+                <div className="top-padding">&nbsp;</div>
             {lineNumberList}
             </div>
         );

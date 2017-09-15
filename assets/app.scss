@@ -109,13 +109,16 @@ div {
 	&.line-numbers {
 		color: $toolbar-background-color;
 		text-align: right;
-		padding-right: 5px;
+        padding-right: 5px;
 	}
 
 	&.line-numbers-pane {
 		height: calc(#{$pane-height} - #{$toolbar-height});
         flex: 0 0 $line-numbers-pane-width;
         background-color: $mid-pane-color;
+        .top-padding {
+            padding-top: calc(#{$task-entry-padding-top} + 1px);
+        }
 	}
 
 }
@@ -155,9 +158,6 @@ svg {
 			&.project {
 				color: $project-color;
 			}
-		}
-	}
-}
 		}
 	}
 }
