@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Parser } from '../parser';
+import { DateUtil } from '../dateutil';
 
 export class TaskEntry extends React.Component {
     constructor (props) {
@@ -11,7 +12,10 @@ export class TaskEntry extends React.Component {
     handleKeyDown (event) {
         if(event.key === 'Enter') {
             let taskLine = event.target.innerHTML;
-            this.props.addTask(this.parser.parseTdTask(taskLine));
+            let task = this.parser.parseTdTask(taskLine);
+            if(task.createdDate === null)
+                task.tokens.unshift(DateUtil.currentDateToken());
+            this.props.addTask(task);
             event.target.innerHTML = "";
             event.preventDefault();
         }
