@@ -6,10 +6,6 @@ import {ToolBar} from './ToolBar';
 import {LineNumbers} from './LineNumbers';
 import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
-//const path = require('path'); //MARK FOR DELETION
-//const fs = require('fs'); //MARK FOR DELETION
-//const {remote} = require('electron'); //MARK FOR DELETION
-//const {dialog} = remote; //MARK FOR DELETION
 
 export class App extends React.Component {
     constructor(props) {
@@ -24,17 +20,6 @@ export class App extends React.Component {
     componentWillReceiveProps(nextProps) {
         this.setState({tdtasks: nextProps.tdtasks});
     }
-    /* MARK FOR DELETION
-    loadFile() {
-        fs.readFile(path.resolve('./TODO.txt'), function(err, data) {
-            if (err) {
-                return console.error(err);
-            }
-            document.getElementById('file-content').innerText = data.toString();
-
-        });
-    }
-    */
     render() {
         let tasksJsx = this.state.tdtasks.map((task, index) => <TdTaskComponent tdtask={task} key={index} />)
         return (
