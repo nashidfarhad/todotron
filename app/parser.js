@@ -86,7 +86,7 @@ export class Parser {
                     }
                 }
 
-                if (tokens[index][0] === '@') {
+                if (tokens[index][0] === '@' && tokens[index].length > 1) {
                     tdTask.tokens.push(new TaskToken(tokens[index], TokenTypes.CONTEXT));
                     continue;
                 }
