@@ -5,7 +5,7 @@ import {initiateMainMenu } from '../menu';
 import {ToolBar} from './ToolBar';
 import {LineNumbers} from './LineNumbers';
 import {Logo} from './icons/Logo';
-
+import { TaskEntry } from './TaskEntry';
 //const path = require('path'); //MARK FOR DELETION
 //const fs = require('fs'); //MARK FOR DELETION
 //const {remote} = require('electron'); //MARK FOR DELETION
@@ -48,6 +48,7 @@ export class App extends React.Component {
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tdtasks.length} />
                     <div className="tdtasks">
+                        <TaskEntry />
                         {tasksJsx}
                     </div>
                 </div>

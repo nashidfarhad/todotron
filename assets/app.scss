@@ -22,6 +22,8 @@ $pane-height: 100vh;
 $project-color: blue;
 $right-pane-color: lightgrey;
 $right-pane-width: 70%;
+$task-entry-background-color: floralwhite;
+$task-entry-padding-top: .5em;
 $toolbar-background-color: black;
 $toolbar-height: 30px;
 $toolbar-z-index: 5;
@@ -155,4 +157,14 @@ svg {
 			}
 		}
 	}
+}
+		}
+	}
+}
+
+.task-entry {
+    background-color: $task-entry-background-color;
+    border-bottom: 1px solid black;
+    padding-top: $task-entry-padding-top;
+    box-shadow: inset 0 -1px 1px 1px lightgrey;
 }
