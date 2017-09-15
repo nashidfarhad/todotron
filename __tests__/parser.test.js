@@ -173,3 +173,52 @@ test("tokens ending with @ shouldn't be context", () => {
         expect(anyContext).toBe(false);
     });
 })
+
+test("projects should be parsed as projects", () => {
+    let count = 0;
+    [
+        "test templates @krost +ringtoneissue",
+        "phone issue @impressive",
+        "router upgrade @impressive +newproject"
+    ].map((task) => {
+        let tokens = parser.parseTdTask(task);
+        tokens.tokens.map((token) => {
+            if(token.tokenType === TokenTypes.PROJECT){
+                count++;
+            }
+        });
+    });
+    expect(count).toBe(2);
+});
+
+test("+ by itself shouldn't be parsed as context", () => {
+    [
+        "meet jeff + train station",
+        "sierra is + charlie"
+    ].map((task) => {
+        let tasktokens = parser.parseTdTask(task);
+        let anyContext = false;
+        tasktokens.tokens.forEach((token) => {
+            if(token.tokenType === TokenTypes.CONTEXT){
+                anyContext = true;
+            }
+        });
+        expect(anyContext).toBe(false);
+    });
+})
+
+test("tokens ending with + shouldn't be context", () => {
+    [
+        "let it be+",
+        "what+ is it?"
+    ].map((task) => {
+        let tokens = parser.parseTdTask(task);
+        let anyContext = false;
+        tokens.tokens.map((token) => {
+            if(token.tokenType === TokenTypes.CONTEXT){
+                anyContext = true;
+            }
+        });
+        expect(anyContext).toBe(false);
+    });
+})
