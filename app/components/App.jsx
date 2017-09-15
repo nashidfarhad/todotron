@@ -6,6 +6,7 @@ import {ToolBar} from './ToolBar';
 import {LineNumbers} from './LineNumbers';
 import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
+import { Parser } from '../parser';
 
 export class App extends React.Component {
     constructor(props) {
@@ -13,12 +14,19 @@ export class App extends React.Component {
         this.state = {
             tdtasks: []
         };
+        this.addTask = this.addTask.bind(this);
     }
     componentWillMount() {
         initiateMainMenu();
     }
     componentWillReceiveProps(nextProps) {
         this.setState({tdtasks: nextProps.tdtasks});
+    }
+    addTask(taskLine) {
+        let parser = new Parser();
+        let tdtsk = this.state.tdtasks.slice();
+        tdtsk.push(parser.parseTdTask(taskLine));
+        this.setState({tdtasks: tdtsk});
     }
     render() {
         let tasksJsx = this.state.tdtasks.map((task, index) => <TdTaskComponent tdtask={task} key={index} />)
@@ -33,7 +41,7 @@ export class App extends React.Component {
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tdtasks.length} />
                     <div className="tdtasks">
-                        <TaskEntry />
+                        <TaskEntry addTask={this.addTask} />
                         {tasksJsx}
                     </div>
                 </div>
