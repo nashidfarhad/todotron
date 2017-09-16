@@ -3,7 +3,7 @@ import { Parser } from '../../app/parser';
 import { Task } from '../../app/task';
 import { TokenTypes } from '../../app/tokentypes';
 import { DateUtil } from '../../app/dateutil';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import React from 'react';
 
 describe('TaskEntry', () => {
