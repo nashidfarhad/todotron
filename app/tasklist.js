@@ -1,14 +1,20 @@
 import {Task} from './task';
-class TaskList {
+import update from 'immutability-helper';
 
-    constructor() {
-        this.tasks = [];
+export class TaskList {
+
+    constructor(tasks) {
+        if(tasks != null)
+            this.tasks = tasks;
+        else
+            this.tasks = [];
     }
 
     //function to push a task into the array, takes a tdtask object
     push(task) {
-        if (task instanceof Task)
-            this.tasks.push(task);
+        if (task instanceof Task){
+            return update(this, {"tasks": {$push: [task]}}); 
+        }
         else
             alert('Wrong type pushed into TaskList. Expected Task, got ' + typeof task);
     }
