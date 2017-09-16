@@ -94,31 +94,7 @@ export class Task {
      * write in todo.txt file
      */
     toString() {
-        let taskString = '';
-        if (isDone)
-            taskString += 'x ';
-        if (priority != null && priority.length !== 0)
-            taskString += `(${priority}) `;
-        if (endDate != null && endDate.length !== 0)
-            taskString += `${endDate} `;
-
-        taskString += `${createdDate} ${task} `;
-
-        if (taskID != null && taskID.length !== 0)
-            taskString += `id:${taskID} `;
-        if (PID != null && PID.length !== 0)
-            taskString = `pid:${PID} `;
-        if (notes != null && notes.length !== 0)
-            taskString = `notes:${notes} `;
-        if (dueDate != null && dueDate.length !== 0)
-            taskString += `due:${dueDate} `;
-        if (dueDate != null && dueDate.length !== 0)
-            taskString += `due:${endDate} `;
-        if (recur != null && recur.length !== 0)
-            taskString += `recur:${recur} `;
-        if (repeat != null)
-            taskString += `repeat:${repeat} `;
-        //TODO: append projects and contexts
-        return taskString;
+        //TODO: redo toString method based on tokens array
+        return "";
     }
 }
