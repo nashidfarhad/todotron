@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TokenComponent } from './TokenComponent';
+import { Token } from './Token';
 
 export class TaskComponent extends React.PureComponent {
 	render() {
-		let classNames = ['tdtask'];
+		let classNames = ['task'];
 		if(this.props.task.isDone) classNames.push('complete');
 		if(this.props.task.isDue()) classNames.push('due');
 		let tokenJsx = this.props.task.tokens.map(
 			(token, index) => {
 				if(index !== 0)
-					return [<span>&nbsp;</span>, <TokenComponent token={token} key={index} index={index}/>];
+					return [<span>&nbsp;</span>, <Token token={token} key={index} index={index}/>];
 				else
-					return <TokenComponent token={token} key={index} index={index}/>;
+					return <Token token={token} key={index} index={index}/>;
 			}
 		);
 		return (
