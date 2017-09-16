@@ -21,7 +21,7 @@ export function openFile(){
                             parser.getParsedTodoList(function(taskList){
                                 let tskList = new TaskList(taskList);
                                 ReactDOM.render( 
-                                    <App tasks={tskList}/>,
+                                    <App taskList={tskList}/>,
                                     document.getElementById('app'));
                                 }); //render call not working - didn't import {App}
                         }

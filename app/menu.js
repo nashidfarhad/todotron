@@ -27,7 +27,7 @@ const template = [
                             parser.getParsedTodoList(function(taskList){
                                 let tskList = new TaskList(taskList);
                                 ReactDOM.render(
-                                    <App tasks={tskList}/>,
+                                    <App taskList={tskList}/>,
                                     document.getElementById('app'));
                             });
                         }

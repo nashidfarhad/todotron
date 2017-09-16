@@ -12,8 +12,9 @@ import { TaskList } from '../tasklist';
 export class App extends React.Component {
     constructor(props) {
         super(props);
+        this.taskList = new TaskList();
         this.state = {
-            taskList: new TaskList()
+            tasks: this.taskList.tasks 
         };
         this.addTask = this.addTask.bind(this);
     }
@@ -21,23 +22,24 @@ export class App extends React.Component {
         initiateMainMenu();
     }
     componentWillReceiveProps(nextProps) {
-        this.setState({taskList: nextProps.taskList});
+        this.taskList = nextProps.taskList;
+        this.setState({tasks: this.taskList.tasks});
     }
     addTask(task) {
-        this.setState({taskList: this.state.taskList.push(task)});
+        this.setState({tasks: this.taskList.push(task)});
     }
     render() {
-        let tasksJsx = this.state.taskList.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
+        let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
         return (
             <div id="main-div">
                 <Logo />
                 <ToolBar/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
-                    <h1>Total Task: {this.state.taskList.tasks.length}</h1>
+                    <h1>Total Task: {this.taskList.tasks.length}</h1>
                 </div>
                 <div className="right-pane">
-                    <LineNumbers lineNumbers={this.state.taskList.tasks.length} />
+                    <LineNumbers lineNumbers={this.state.tasks.length} />
                     <div className="task-list">
                         <TaskEntry addTask={this.addTask} />
                         {tasksJsx}
@@ -49,5 +51,5 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-    taskList: PropTypes.array
+    taskList: PropTypes.object
 }
