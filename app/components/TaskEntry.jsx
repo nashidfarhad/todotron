@@ -12,11 +12,13 @@ export class TaskEntry extends React.Component {
     handleKeyDown (event) {
         if(event.key === 'Enter') {
             let taskLine = event.target.innerHTML;
-            let task = this.parser.parseTdTask(taskLine);
-            if(task.createdDate === null)
-                task.tokens.unshift(DateUtil.currentDateToken());
-            this.props.addTask(task);
-            event.target.innerHTML = "";
+            if(taskLine.length > 0) {
+                let task = this.parser.parseTdTask(taskLine);
+                if(task.createdDate === null)
+                    task.tokens.unshift(DateUtil.currentDateToken());
+                this.props.addTask(task);
+                event.target.innerHTML = "";
+            }
             event.preventDefault();
         }
     }
