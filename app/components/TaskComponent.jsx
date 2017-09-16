@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Token } from './Token';
 
-export class TaskComponent extends React.Component {
+export class TaskComponent extends React.PureComponent {
 	render() {
 		let classNames = ['task'];
 		if(this.props.task.isDone) classNames.push('complete');
@@ -18,4 +19,8 @@ export class TaskComponent extends React.Component {
 			<div className={classNames.join(' ')}>{tokenJsx}</div>
 		);
 	}
+}
+
+TaskComponent.propTypes = {
+    task: PropTypes.object
 }
