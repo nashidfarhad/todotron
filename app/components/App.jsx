@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import update from 'immutability-helper';
 import { TaskComponent } from './TaskComponent';
 import {initiateMainMenu } from '../menu';
 import {ToolBar} from './ToolBar';
@@ -22,9 +23,7 @@ export class App extends React.Component {
         this.setState({task: nextProps.taskList});
     }
     addTask(task) {
-        let tdtsk = this.state.task.slice();
-        tdtsk.push(task);
-        this.setState({task: tdtsk});
+        this.setState({task: update(this.state.task, {$push: [task]})});
     }
     render() {
         let tasksJsx = this.state.task.map((task, index) => <TaskComponent task={task} key={index} />)
