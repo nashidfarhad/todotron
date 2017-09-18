@@ -29,4 +29,26 @@ describe('task', () => {
 
         expect(task.isDone).toBe(true);
     });
+
+    test('test get projects', () => {
+        let task = new Task();
+        task.tokens = [
+            new TaskToken('+abc', TokenTypes.PROJECT),
+            new TaskToken('+abc', TokenTypes.PROJECT),
+            new TaskToken('+adbc', TokenTypes.PROJECT),
+        ];
+        let projects = ['+abc', '+abc', '+adbc'];
+        expect(task.projects).toEqual(projects);
+    });
+
+    test('test get contexts', () => {
+        let task = new Task();
+        task.tokens = [
+            new TaskToken('@abc', TokenTypes.CONTEXT),
+            new TaskToken('@abc', TokenTypes.CONTEXT),
+            new TaskToken('@adbc', TokenTypes.CONTEXT),
+        ];
+        let contexts = ['@abc', '@abc', '@adbc'];
+        expect(task.contexts).toEqual(contexts);
+    });
 });

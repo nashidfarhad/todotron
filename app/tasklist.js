@@ -23,4 +23,22 @@ export class TaskList {
     get getTask() {
         return this.task;
     }
+
+    // returns unique projects
+    getProjectList() {
+        let projects = [];
+        this.tasks.map((task) => {
+            projects = projects.concat(task.projects);
+        });
+        return Array.from(new Set(projects));
+    }
+
+    // return unique contexts
+    getContextList() {
+        let contexts = [];
+        this.tasks.map((task) => {
+            contexts = contexts.concat(task.contexts);
+        });
+        return Array.from(new Set(contexts));
+    }
 }

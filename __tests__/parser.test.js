@@ -1,7 +1,14 @@
 import { Parser } from '../app/parser';
+import {Task} from '../app/task';
 import { TokenTypes } from '../app/tokentypes';
 
 const parser = new Parser('');
+
+test('parseTdTask returns Type Task', () => {
+    let tdtaskline = "x 2016-09-06 bla bla bal jslfjsdlfjslfjl";
+    let tdtask = parser.parseTdTask(tdtaskline);
+    expect(tdtask instanceof Task).toBe(true);
+});
 
 test('parses correct number of tokens', () => {
     let tdtaskline = "x 2016-09-06 bla bla bal jslfjsdlfjslfjl";
