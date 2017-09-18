@@ -1,3 +1,6 @@
+import { TaskToken } from './tasktoken';
+import { TokenTypes } from './tokentypes';
+
 export const DateUtil = {
     dateRegex: /^\d{4}-\d{1,2}-\d{1,2}$/,
     /*
@@ -7,6 +10,14 @@ export const DateUtil = {
         let dt = new Date();
         let dtStr = dt.toISOString().split('T')[0] + 'T00:00:00Z'; //adding time part to prevent timezone interference
         return new Date(dtStr);
+    },
+    /*
+     * returns current javascript date without time part as TaskToken
+     */
+    currentDateToken: function () {
+        let dt = new Date();
+        let dtStr = dt.toISOString().split('T')[0];
+        return new TaskToken(dtStr, TokenTypes.CREATION_DATE);
     },
     /*
      * @param1: javascript date object which will be checked

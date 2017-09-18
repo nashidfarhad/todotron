@@ -1,4 +1,6 @@
 import { DateUtil } from '../app/dateutil';
+import { TaskToken } from '../app/tasktoken';
+import { TokenTypes } from '../app/tokentypes';
 
 describe('DateUtil', () => {
     test('currentDate returns current date without time', () => {
@@ -7,6 +9,14 @@ describe('DateUtil', () => {
         let tmStr = DateUtil.currentDate().toISOString().split('T')[1];
         expect(dtStr2).toBe(dtStr1);
         expect(tmStr).toBe('00:00:00.000Z');
+    });
+
+    test('currentDateToken returns current date as CREATION_DATE token', () => {
+        let dtStr1 = (new Date()).toISOString().split('T')[0];
+        let dtTok = DateUtil.currentDateToken();
+        expect(dtTok instanceof TaskToken).toBe(true);
+        expect(dtTok.token).toBe(dtStr1);
+        expect(dtTok.tokenType).toBe(TokenTypes.CREATION_DATE);
     });
 
     test('date regex matches format "yyyy-mm-dd"', () => {

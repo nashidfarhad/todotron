@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Parser} from './parser';
 import {App} from './components/App';
+import { TaskList } from './tasklist';
 export const initiateMainMenu = function() {
 
 const {remote} = require('electron');
@@ -22,12 +23,13 @@ const template = [
                         if (fileNames === undefined) {
                             dialog.showErrorBox("Error", "No file selected");
                         } else {
-                                let parser = new Parser(fileNames[0]);
-                                parser.getParsedTodoList(function(taskList){
+                            let parser = new Parser(fileNames[0]);
+                            parser.getParsedTodoList(function(taskList){
+                                let tskList = new TaskList(taskList);
                                 ReactDOM.render(
-                                    <App taskList={taskList}/>,
+                                    <App taskList={tskList}/>,
                                     document.getElementById('app'));
-                                });
+                            });
                         }
                     });
                 }
