@@ -8,6 +8,7 @@ import {LineNumbers} from './LineNumbers';
 import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
+import {ContextList} from './ContextList';
 
 export class App extends React.Component {
     constructor(props) {
@@ -36,7 +37,8 @@ export class App extends React.Component {
                 <ToolBar/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
-                    <h1>Total Task: {this.taskList.tasks.length}</h1>
+                    <h2>Total Task: {this.taskList.tasks.length}</h2>
+                    <ContextList contextList={this.taskList.getContextList()} />
                 </div>
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tasks.length} />
