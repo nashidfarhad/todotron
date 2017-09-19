@@ -9,6 +9,7 @@ import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
 import {ContextList} from './ContextList';
+import {ProjectList} from './ProjectList';
 
 export class App extends React.Component {
     constructor(props) {
@@ -38,8 +39,8 @@ export class App extends React.Component {
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
                     <h2>Total Task: {this.taskList.tasks.length}</h2>
-                    <h3>Contexts:</h3>
                     <ContextList contextList={this.taskList.getContextList()} />
+                    <ProjectList projectList={this.taskList.getProjectList()} />
                 </div>
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tasks.length} />
