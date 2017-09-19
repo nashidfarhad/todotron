@@ -30,7 +30,7 @@ export class TaskList {
         this.tasks.map((task) => {
             projects = projects.concat(task.projects);
         });
-        return Array.from(new Set(projects));
+        return Array.from(new Set(projects)).sort((a,b) => {return b.toLowerCase()-a.toLowerCase()});
     }
 
     // return unique contexts
@@ -39,6 +39,9 @@ export class TaskList {
         this.tasks.map((task) => {
             contexts = contexts.concat(task.contexts);
         });
-        return Array.from(new Set(contexts));
+        return Array.from(new Set(contexts)).sort((a,b) => {
+            if (a !== null && b !== null)
+                return b.toLowerCase()-a.toLowerCase();
+        });
     }
 }

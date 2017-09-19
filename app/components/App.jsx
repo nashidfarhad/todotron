@@ -38,6 +38,7 @@ export class App extends React.Component {
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
                     <h2>Total Task: {this.taskList.tasks.length}</h2>
+                    <h3>Contexts:</h3>
                     <ContextList contextList={this.taskList.getContextList()} />
                 </div>
                 <div className="right-pane">

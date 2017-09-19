@@ -8,17 +8,23 @@ export class ContextList extends React.PureComponent {
     }
 
     render() {
-        let contextList;
         if (this.props.contextList.length > 0) {
-            contextList = this.props.contextList.map((context) => {
-                <Context contextName={context}/>
+            //alert(this.props.contextList);
+            let contextList = this.props.contextList.map((context) => {
+                if (context !== null) context = context.substr(1);
+                return <div key={context}>{context}</div>;
             });
+            //alert('' + contextList);
+            return(
+                <div className="context-list">
+                    {contextList}
+                </div>
+            );
+        } else {
+            return (
+                <div className="context-list"></div>
+            );
         }
-        return(
-            <div className="context-list">
-                {contextList}
-            </div>
-        );
     }
 }
 
