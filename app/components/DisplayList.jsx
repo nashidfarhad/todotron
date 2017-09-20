@@ -20,11 +20,12 @@ export class DisplayList extends React.PureComponent {
     }
 
     render() {
-        if (this.props.list.length > 0) {
-            let list = this.props.list.map((item) => {
-                if (item !== null) item = item.substr(1);
-                return <div key={item} style={{display: this.state.display}}>{item}</div>;
-            });
+        if (this.props.list !== null && this.props.list !== undefined) {
+            let list = [];
+            for(var item in this.props.list) {
+                let itemName = item.substr(1);
+                list.push(<div key={item} style={{display: this.state.display}}>{itemName + ' (' + this.props.list[item] + ')'}</div>);
+            }
             return(
                 <div className={this.props.type + '-list'}>
                     <h3 onClick={this.handleClick} className="clickable">{this.props.type + ':'}</h3>
@@ -40,6 +41,6 @@ export class DisplayList extends React.PureComponent {
 }
 
 DisplayList.propTypes = {
-    list: PropTypes.array,
+    list: PropTypes.object,
     type: PropTypes.string.isRequired
 }

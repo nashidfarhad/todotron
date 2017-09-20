@@ -30,10 +30,15 @@ export class TaskList {
         this.tasks.map((task) => {
             projects = projects.concat(task.projects);
         });
-        return Array.from(new Set(projects)).sort((a,b) => {
+        let set = Array.from(new Set(projects)).sort((a,b) => {
             if(a !== null && b !== null)
                 return b.toLowerCase()-a.toLowerCase();
         });
+        let list = {};
+        for(var i = 0; i<set.length; i++){
+            list[set[i]] = projects.filter((project) => project == set[i]).length;
+        }
+        return list;
     }
 
     // return unique contexts sorted
@@ -42,9 +47,14 @@ export class TaskList {
         this.tasks.map((task) => {
             contexts = contexts.concat(task.contexts);
         });
-        return Array.from(new Set(contexts)).sort((a,b) => {
+        let set = Array.from(new Set(contexts)).sort((a,b) => {
             if (a !== null && b !== null)
                 return b.toLowerCase()-a.toLowerCase();
         });
+        let list = {};
+        for(var i = 0; i<set.length; i++){
+            list[set[i]] = contexts.filter((context) => context == set[i]).length;
+        }
+        return list;
     }
 }
