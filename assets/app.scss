@@ -45,6 +45,14 @@ $toolbar-z-index: 5;
 
 @mixin left-pane-list {
     padding-left: 5px;
+    div {
+        &::before {
+            content: '\251C  ';
+        }
+        &:last-child::before {
+            content: '\2514  ';
+        }
+    }
 }
 
 div {
