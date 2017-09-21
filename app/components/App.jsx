@@ -39,8 +39,8 @@ export class App extends React.Component {
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
                     <h2>Total Task: {this.taskList.tasks.length}</h2>
-                    <DisplayList list={this.taskList.getContextList()} type='Contexts'/>
-                    <DisplayList list={this.taskList.getProjectList()} type='Projects'/>
+                    <DisplayList list={this.taskList.getContextList()} type='context'/>
+                    <DisplayList list={this.taskList.getProjectList()} type='project'/>
                 </div>
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tasks.length} />
