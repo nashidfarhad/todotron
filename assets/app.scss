@@ -46,6 +46,10 @@ $toolbar-z-index: 5;
 @mixin left-pane-list {
     padding-left: 5px;
     div {
+        cursor: pointer;
+        &:hover {
+            text-decoration: underline;
+        }
         &::before {
             content: '\251C  ';
         }
