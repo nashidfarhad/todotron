@@ -36,7 +36,11 @@ export class TaskList {
         });
         let list = {};
         for(var i = 0; i<set.length; i++){
-            list[set[i]] = projects.filter((project) => project == set[i]).length;
+            if(set[i] != null){
+                list[set[i]] = projects.filter((project) => project == set[i]).length;
+            } else {
+                list['+none'] = projects.filter((project) => project == set[i]).length;
+            }
         }
         return list;
     }
@@ -53,7 +57,11 @@ export class TaskList {
         });
         let list = {};
         for(var i = 0; i<set.length; i++){
-            list[set[i]] = contexts.filter((context) => context == set[i]).length;
+            if(set[i] != null) {
+                list[set[i]] = contexts.filter((context) => context == set[i]).length;
+            } else {
+                list['@none'] = contexts.filter((context) => context == set[i]).length;
+            }
         }
         return list;
     }
