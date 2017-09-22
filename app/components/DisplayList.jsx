@@ -9,6 +9,7 @@ export class DisplayList extends React.PureComponent {
             display: 'block'
         };
         this.handleClick = this.handleClick.bind(this);
+        this.handleChildClick = this.handleChildClick.bind(this);
     }
 
     handleClick() {
@@ -19,12 +20,18 @@ export class DisplayList extends React.PureComponent {
         }
     }
 
+    handleChildClick(event) {
+        let name = event.target.innerHTML.split('(')[0];
+        name = name.substring(0, name.length - 1);
+        this.props.onClick(name);
+    }
+
     render() {
         if (this.props.list !== null && this.props.list !== undefined) {
             let list = [];
             for(var item in this.props.list) {
                 let itemName = item.substr(1);
-                list.push(<div key={item} style={{display: this.state.display}}>{itemName + ' (' + this.props.list[item] + ')'}</div>);
+                list.push(<div key={item} style={{display: this.state.display}} onClick={this.handleChildClick}>{itemName + ' (' + this.props.list[item] + ')'}</div>);
             }
             return(
                 <div className={this.props.type + '-list'}>
@@ -42,5 +49,6 @@ export class DisplayList extends React.PureComponent {
 
 DisplayList.propTypes = {
     list: PropTypes.object,
-    type: PropTypes.string.isRequired
+    type: PropTypes.string.isRequired,
+    onClick: PropTypes.func
 }

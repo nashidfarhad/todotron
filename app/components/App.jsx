@@ -19,6 +19,8 @@ export class App extends React.Component {
             tasks: this.taskList.tasks 
         };
         this.addTask = this.addTask.bind(this);
+        this.filterByContext = this.filterByContext.bind(this);
+        this.filterByProject = this.filterByProject.bind(this);
     }
     componentWillMount() {
         initiateMainMenu();
@@ -30,6 +32,16 @@ export class App extends React.Component {
     addTask(task) {
         this.setState({tasks: this.taskList.push(task)});
     }
+    filterByContext(context) {
+        this.setState({
+            tasks: this.taskList.filterByContext(context)
+        });
+    }
+    filterByProject(project) {
+        this.setState({
+            tasks: this.taskList.filterByProject(project)
+        });
+    }
     render() {
         let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
         return (
@@ -39,8 +51,8 @@ export class App extends React.Component {
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
                     <h2>Total Task: {this.taskList.tasks.length}</h2>
-                    <DisplayList list={this.taskList.getContextList()} type='context'/>
-                    <DisplayList list={this.taskList.getProjectList()} type='project'/>
+                    <DisplayList list={this.taskList.getContextList()} onClick={this.filterByContext} type='context'/>
+                    <DisplayList list={this.taskList.getProjectList()} onClick={this.filterByProject} type='project'/>
                 </div>
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tasks.length} />

@@ -46,7 +46,7 @@ $toolbar-z-index: 5;
 @mixin left-pane-list {
     padding-left: 5px;
     div {
-        cursor: pointer;
+        @extend .clickable;
         &:hover {
             text-decoration: underline;
         }

@@ -65,4 +65,24 @@ export class TaskList {
         }
         return list;
     }
+
+    filterByContext(context) {
+        let ctx = '@' + context;
+        return this.tasks.filter((task) => {
+            let ctxs = task.contexts || ['@none'];
+            if (ctxs != null)
+                return ctxs.indexOf(ctx) >= 0
+            else return false;
+        });
+    }
+
+    filterByProject(project) {
+        let pjt = '+' + project;
+        return this.tasks.filter((task) => {
+            let pjts = task.projects || ['+none'];
+            if (pjts != null)
+                return pjts.indexOf(pjt) >= 0
+            else return false;
+        });
+    }
 }
