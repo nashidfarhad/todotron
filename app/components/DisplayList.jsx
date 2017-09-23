@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import update from 'immutability-helper';
+import { DisplayListItem } from './DisplayListItem';
 
 export class DisplayList extends React.PureComponent {
     constructor(props) {
@@ -20,10 +20,8 @@ export class DisplayList extends React.PureComponent {
         }
     }
 
-    handleChildClick(event) {
-        let name = event.target.innerHTML.split('(')[0];
-        name = name.substring(0, name.length - 1);
-        this.props.onClick(name);
+    handleChildClick(itemName) {
+        this.props.onClick(itemName);
     }
 
     render() {
@@ -31,7 +29,9 @@ export class DisplayList extends React.PureComponent {
             let list = [];
             for(var item in this.props.list) {
                 let itemName = item.substr(1);
-                list.push(<div key={item} style={{display: this.state.display}} onClick={this.handleChildClick}>{itemName + ' (' + this.props.list[item] + ')'}</div>);
+                list.push(<DisplayListItem key={item} display={this.state.display} 
+                                           itemName={itemName} count={this.props.list[item]} 
+                                           onClick={this.handleChildClick} />);
             }
             return(
                 <div className={this.props.type + '-list'}>
