@@ -47,14 +47,16 @@ $toolbar-z-index: 5;
     padding-left: 5px;
     div {
         @extend .clickable;
-        &:hover {
-            text-decoration: underline;
-        }
         &::before {
             content: '\251C  ';
         }
         &:last-child::before {
             content: '\2514  ';
+        }
+        span {
+            &:hover {
+                text-decoration: underline;
+            }
         }
     }
 }

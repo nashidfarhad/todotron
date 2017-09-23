@@ -12,7 +12,7 @@ export class DisplayListItem extends React.PureComponent {
     render() {
         return (
             <div style={{display: this.props.display}} onClick={this.handleClick}>
-                {this.props.itemName + ' (' + this.props.count + ')'}
+                <span>{this.props.itemName}</span>{' (' + this.props.count + ')'}
             </div>
         );
     }
