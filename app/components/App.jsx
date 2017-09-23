@@ -16,7 +16,7 @@ export class App extends React.Component {
         super(props);
         this.taskList = new TaskList();
         this.state = {
-            tasks: this.taskList.tasks 
+            tasks: this.taskList.tasks
         };
         this.addTask = this.addTask.bind(this);
         this.filterByContext = this.filterByContext.bind(this);
@@ -67,5 +67,6 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-    taskList: PropTypes.object
+    taskList: PropTypes.object,
+    fileName: PropTypes.string
 }

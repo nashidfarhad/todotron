@@ -20,7 +20,7 @@ export function openFile() {
             parser.getParsedTodoList(function (taskList) {
                 let tskList = new TaskList(taskList);
                 ReactDOM.render( 
-                    <App taskList = { tskList } />,
+                    <App taskList = { tskList } fileName = { fileNames[0] } />,
                     document.getElementById('app'));
             });
         }
