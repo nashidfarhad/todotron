@@ -11,7 +11,9 @@ export class DisplayListItem extends React.PureComponent {
     }
     render() {
         return (
-            <div style={{display: this.props.display}} onClick={this.handleClick}>{this.props.itemName + ' (' + this.props.count + ')'}</div>
+            <div style={{display: this.props.display}} onClick={this.handleClick}>
+                {this.props.itemName + ' (' + this.props.count + ')'}
+            </div>
         );
     }
 }
@@ -19,5 +21,6 @@ export class DisplayListItem extends React.PureComponent {
 DisplayListItem.propTypes = {
     display: PropTypes.string,
     itemName: PropTypes.string,
-    count: PropTypes.number
+    count: PropTypes.number,
+    onClick: PropTypes.func
 };
