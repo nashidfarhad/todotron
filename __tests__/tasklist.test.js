@@ -6,11 +6,15 @@ describe('taskList', () => {
     const parser = new Parser('');
     test('test getProjectList', () => {
         let taskList = new TaskList();
-        let taskLine = 'this a is a task +abc +abc +efg +efg';
-        let task = parser.parseTdTask(taskLine)
-        taskList.push(task);
+        [
+            '+c +c +d +d',
+            '+e +f +g',
+            '+h +h +h'
+        ].map((task) => {
+            taskList.push(parser.parseTdTask(task));
+        });
 
-        expect(taskList.getProjectList()).toEqual(['+abc', '+efg']);
+        expect(taskList.getProjectList()).toEqual({"+c": 2, "+d": 2, "+e": 1, "+f": 1, "+g": 1, "+h": 3});
     });
 
     test('test getContextList', () => {
@@ -22,6 +26,18 @@ describe('taskList', () => {
         ].map((task) => {
             taskList.push(parser.parseTdTask(task));
         });
-        expect(taskList.getContextList()).toEqual(['@c', '@d', '@e', '@f', '@g', '@h']);
+        expect(taskList.getContextList()).toEqual({"@c": 2, "@d": 2, "@e": 1, "@f": 1, "@g": 1, "@h": 3});
+    });
+
+    test('getContextList > with no context tasks', () => {
+        let taskList = new TaskList();
+        [
+            '@c @c @d @d',
+            'e f g',
+            '@h @h @h'
+        ].map((task) => {
+            taskList.push(parser.parseTdTask(task));
+        });
+        expect(taskList.getContextList()).toEqual({"@c": 2, "@d": 2, "@h": 3, "@none": 1});
     });
 });

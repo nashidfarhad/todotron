@@ -8,15 +8,23 @@ import {LineNumbers} from './LineNumbers';
 import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
+import {DisplayList} from './DisplayList';
+//import {ProjectList} from './ProjectList';
 
 export class App extends React.Component {
     constructor(props) {
         super(props);
         this.taskList = new TaskList();
         this.state = {
-            tasks: this.taskList.tasks 
+            tasks: this.taskList.tasks
         };
+        this.bindFunctions();
+    }
+    bindFunctions() {
         this.addTask = this.addTask.bind(this);
+        this.filterByContext = this.filterByContext.bind(this);
+        this.filterByProject = this.filterByProject.bind(this);
+        this.showAllTasks = this.showAllTasks.bind(this);
     }
     componentWillMount() {
         initiateMainMenu();
@@ -28,6 +36,21 @@ export class App extends React.Component {
     addTask(task) {
         this.setState({tasks: this.taskList.push(task)});
     }
+    filterByContext(context) {
+        this.setState({
+            tasks: this.taskList.filterByContext(context)
+        });
+    }
+    filterByProject(project) {
+        this.setState({
+            tasks: this.taskList.filterByProject(project)
+        });
+    }
+    showAllTasks() {
+        this.setState({
+            tasks: this.taskList.tasks
+        });
+    }
     render() {
         let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
         return (
@@ -36,7 +59,9 @@ export class App extends React.Component {
                 <ToolBar/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
-                    <h1>Total Task: {this.taskList.tasks.length}</h1>
+                    <h2 className="clickable" onClick={this.showAllTasks}>Total Task: {this.taskList.tasks.length}</h2>
+                    <DisplayList list={this.taskList.getContextList()} onClick={this.filterByContext} type='context'/>
+                    <DisplayList list={this.taskList.getProjectList()} onClick={this.filterByProject} type='project'/>
                 </div>
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tasks.length} />
@@ -51,5 +76,6 @@ export class App extends React.Component {
 }
 
 App.propTypes = {
-    taskList: PropTypes.object
+    taskList: PropTypes.object,
+    fileName: PropTypes.string
 }
