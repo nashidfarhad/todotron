@@ -26,3 +26,23 @@ export function openFile() {
         }
     });
 }
+
+export function saveFile(toWrite) {
+    const { remote } = require('electron');
+    const { dialog } = remote;
+    var fs = require('fs');
+    dialog.showSaveDialog({
+        filters: [{
+            name: 'Todo Text Files',
+            extensions: ['txt']
+        }]
+    }, function (fileName) {
+        if (fileName === undefined) {
+            dialog.showErrorBox("Error", "No file selected");
+        } else {
+            fs.writeFile(fileName, toWrite, function(err){
+                dialog.showErrorBox("Error", "Couldn't write to file" + fileName);
+            });
+        }
+    });
+}

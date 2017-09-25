@@ -95,6 +95,13 @@ export class Task {
      */
     toString() {
         //TODO: redo toString method based on tokens array
-        return "";
+        let taskLine = "";
+        this.tokens.map((token) => {
+            // if(token.tokenType === TokenTypes.TAG) {
+            //     taskLine += ' ' + token.tagName + ':' + token.tagValue;
+            // }
+            taskLine = taskLine + ' ' + token.token;
+        });
+        return taskLine.substr(1);
     }
 }

@@ -85,4 +85,12 @@ export class TaskList {
             else return false;
         });
     }
+
+    toString() {
+        let taskList = "";
+        this.tasks.map((task) => {
+            taskList += task.toString() + '\n';
+        });
+        return taskList;
+    }
 }
