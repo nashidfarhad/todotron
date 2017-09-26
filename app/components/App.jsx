@@ -9,7 +9,7 @@ import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
 import {DisplayList} from './DisplayList';
-//import {ProjectList} from './ProjectList';
+import {saveFile} from '../commonfunctions';
 
 export class App extends React.Component {
     constructor(props) {
@@ -25,6 +25,7 @@ export class App extends React.Component {
         this.filterByContext = this.filterByContext.bind(this);
         this.filterByProject = this.filterByProject.bind(this);
         this.showAllTasks = this.showAllTasks.bind(this);
+        this.saveFile = this.saveFile.bind(this);
     }
     componentWillMount() {
         initiateMainMenu();
@@ -51,12 +52,15 @@ export class App extends React.Component {
             tasks: this.taskList.tasks
         });
     }
+    saveFile(){
+        saveFile(this.taskList.toString(), this.props.fileName);
+    }
     render() {
         let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
         return (
             <div id="main-div">
                 <Logo />
-                <ToolBar/>
+                <ToolBar saveFile={this.saveFile}/>
                 <div className="left-pane">
                     <h1 className="todotron">ToDoTron</h1>
                     <h2 className="clickable" onClick={this.showAllTasks}>Total Task: {this.taskList.tasks.length}</h2>

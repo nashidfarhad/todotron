@@ -27,7 +27,7 @@ export function openFile() {
     });
 }
 
-export function saveFile(toWrite) {
+export function saveNewFile(toWrite) {
     const { remote } = require('electron');
     const { dialog } = remote;
     var fs = require('fs');
@@ -41,8 +41,21 @@ export function saveFile(toWrite) {
             dialog.showErrorBox("Error", "No file selected");
         } else {
             fs.writeFile(fileName, toWrite, function(err){
-                dialog.showErrorBox("Error", "Couldn't write to file" + fileName);
+                if (err) dialog.showErrorBox("Error", "Couldn't write to file: " + fileName);
             });
         }
     });
+}
+
+export function saveFile(content, filePath) {
+    const { remote } = require('electron');
+    const { dialog } = remote;
+    var fs = require('fs');
+    if (filePath === undefined || filePath === null) {
+        dialog.showErrorBox("Error", "Not valid file: " + filePath);
+    } else {
+        fs.writeFile(filePath, content, function(err){
+            if(err) dialog.showErrorBox("Error", "Couldn't write to file: " + filePath);
+        });
+    }
 }

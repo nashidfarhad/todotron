@@ -1,8 +1,8 @@
 // ToolBar Component class
 import React from 'react';
+import PropTypes from 'prop-types';
 import {ToolBarButton} from './icons/ToolBarButton';
 import {openFile} from '../commonfunctions';
-//import { Logo } from './icons/Logo';
 
 const buttonList = ["file","folder","hard-drive","action-redo","action-undo",
                     "circle-check","arrow-circle-top","arrow-circle-bottom",
@@ -15,10 +15,12 @@ export class ToolBar extends React.Component {
     }
     
     handleClick(iconName){
-        //alert(iconName + ' clicked');
         switch(iconName){
             case 'file':
                 openFile();
+            break;
+            case 'hard-drive':
+                this.props.saveFile();
             break;
             default:
                 alert('Watch where you click');
@@ -34,4 +36,8 @@ export class ToolBar extends React.Component {
             </div>
         );
     }
+}
+
+ToolBar.propTypes = {
+    saveFile: PropTypes.func
 }
