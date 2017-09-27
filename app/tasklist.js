@@ -30,9 +30,10 @@ export class TaskList {
         this.tasks.map((task) => {
             projects = projects.concat(task.projects);
         });
+        if (projects.length > 0) projects.concat('+none');
         let set = Array.from(new Set(projects)).sort((a, b) => {
-            var nameA = (a || 'none').toLowerCase(),
-                nameB = (b || 'none').toLowerCase();
+            var nameA = (a || '+none').toLowerCase(),
+                nameB = (b || '+none').toLowerCase();
             if (nameA < nameB) //sort string ascending
                 return -1;
             if (nameA > nameB)
@@ -56,9 +57,10 @@ export class TaskList {
         this.tasks.map((task) => {
             contexts = contexts.concat(task.contexts);
         });
+        if (contexts.length > 0) contexts.concat('@none');
         let set = Array.from(new Set(contexts)).sort((a, b) => {
-            var nameA = (a || 'none').toLowerCase(),
-                nameB = (b || 'none').toLowerCase();
+            var nameA = (a || '@none').toLowerCase(),
+                nameB = (b || '@none').toLowerCase();
             if (nameA < nameB) //sort string ascending
                 return -1;
             if (nameA > nameB)
