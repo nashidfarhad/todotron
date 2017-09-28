@@ -31,8 +31,14 @@ export class App extends React.Component {
         initiateMainMenu();
     }
     componentWillReceiveProps(nextProps) {
-        this.taskList = nextProps.taskList;
-        this.setState({tasks: this.taskList.tasks});
+        switch(nextProps.event) {
+            case 'save':
+                this.saveFile();
+            break;
+            default:
+            this.taskList = nextProps.taskList;
+            this.setState({tasks: this.taskList.tasks});
+        }
     }
     addTask(task) {
         this.setState({tasks: this.taskList.push(task)});
@@ -81,5 +87,6 @@ export class App extends React.Component {
 
 App.propTypes = {
     taskList: PropTypes.object,
-    fileName: PropTypes.string
+    fileName: PropTypes.string,
+    event: PropTypes.string
 }

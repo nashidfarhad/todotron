@@ -33,6 +33,14 @@ export const initiateMainMenu = function () {
                 });
             }
         }, {
+            label: 'Save',
+            click() {
+                ReactDOM.render(
+                    <App event="save" />,
+                    document.getElementById('app')
+                );
+            }
+        }, {
             role: 'close'
         }]
     }, {
