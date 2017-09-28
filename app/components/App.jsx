@@ -9,7 +9,7 @@ import {Logo} from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
 import {DisplayList} from './DisplayList';
-import {saveFile} from '../commonfunctions';
+import * as commFunc from '../commonfunctions';
 
 export class App extends React.Component {
     constructor(props) {
@@ -32,6 +32,9 @@ export class App extends React.Component {
     }
     componentWillReceiveProps(nextProps) {
         switch(nextProps.event) {
+            case 'open':
+                commFunc.openFile();
+            break;
             case 'save':
                 this.saveFile();
             break;
@@ -59,7 +62,7 @@ export class App extends React.Component {
         });
     }
     saveFile(){
-        saveFile(this.taskList.toString(), this.props.fileName);
+        commFunc.saveFile(this.taskList.toString(), this.props.fileName);
     }
     render() {
         let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
