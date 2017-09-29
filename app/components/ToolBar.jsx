@@ -16,9 +16,10 @@ export class ToolBar extends React.Component {
     
     handleClick(iconName){
         switch(iconName){
-            case 'file':
+            case 'folder':
                 openFile();
             break;
+            case 'file':
             case 'hard-drive':
                 this.props.saveFile();
             break;
