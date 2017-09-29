@@ -23,16 +23,17 @@
         "electron": "^1.7.5",
         "electron-debug": "^1.4.0",
         "electron-react-devtools": "^0.4.0",
-        "enzyme": "^2.9.1",
+        "enzyme": "^3.0.0",
+        "enzyme-adapter-react-16": "^1.0.0",
         "eslint": "^4.6.1",
         "eslint-plugin-jest": "^21.0.0",
         "eslint-plugin-react": "^7.3.0",
         "extract-text-webpack-plugin": "^3.0.0",
         "file-loader": "^0.11.2",
-        "jest": "^21.0.1",
+        "jest": "^21.2.1",
         "node-sass": "^4.5.3",
         "open-iconic": "^1.1.1",
-        "react-test-renderer": "^15.6.1",
+        "react-test-renderer": "^16.0.0",
         "sass-loader": "^6.0.6",
         "webpack": "^3.5.5",
         "webpack-dev-server": "^2.7.1"
@@ -40,7 +41,7 @@
     "dependencies": {
         "immutability-helper": "^2.3.1",
         "prop-types": "^15.5.10",
-        "react": "^15.6.1",
-        "react-dom": "^15.6.1"
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0"
     }
 }
