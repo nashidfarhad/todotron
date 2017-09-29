@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { TaskComponent } from './TaskComponent';
-import {initiateMainMenu } from '../menu';
-import {ToolBar} from './ToolBar';
-import {LineNumbers} from './LineNumbers';
-import {Logo} from './icons/Logo';
+import { initiateMainMenu } from '../menu';
+import { ToolBar } from './ToolBar';
+import { LineNumbers } from './LineNumbers';
+import { Logo } from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
 import { LeftPane } from './LeftPane';
