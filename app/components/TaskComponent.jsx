@@ -10,7 +10,7 @@ export class TaskComponent extends React.PureComponent {
 		let tokenJsx = this.props.task.tokens.map(
 			(token, index) => {
 				if(index !== 0)
-					return [<span>&nbsp;</span>, <Token token={token} key={index} index={index}/>];
+					return [<span key={'empty'+index}>&nbsp;</span>, <Token token={token} key={index} index={index}/>];
 				else
 					return <Token token={token} key={index} index={index}/>;
 			}
