@@ -34,9 +34,13 @@ export class App extends React.Component {
         switch(nextProps.event) {
             case 'open':
                 commFunc.openFile();
+                this.setState({fileName: nextProps.fileName});
             break;
             case 'save':
                 this.saveFile();
+            break;
+            case 'new-save':
+                this.setState({fileName: nextProps.fileName});
             break;
             default:
             this.taskList = nextProps.taskList;
@@ -62,7 +66,8 @@ export class App extends React.Component {
         });
     }
     saveFile(){
-        commFunc.saveFile(this.taskList.toString(), this.props.fileName);
+        if (this.state.fileName) commFunc.saveFile(this.taskList.toString(), this.state.fileName);
+        else commFunc.saveNewFile(this.taskList.toString());
     }
     render() {
         let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)

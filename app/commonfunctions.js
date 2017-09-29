@@ -43,6 +43,10 @@ export function saveNewFile(toWrite) {
             fs.writeFile(fileName, toWrite, function(err){
                 if (err) dialog.showErrorBox("Error", "Couldn't write to file: " + fileName);
             });
+            ReactDOM.render(
+                <App fileName = {fileName} event="new-save"/>,
+                document.getElementById('app')
+            );
         }
     });
 }
