@@ -34,7 +34,6 @@ export class App extends React.Component {
         switch(nextProps.event) {
             case 'open':
                 commFunc.openFile();
-                this.setState({fileName: nextProps.fileName});
             break;
             case 'save':
                 this.saveFile();
@@ -45,6 +44,7 @@ export class App extends React.Component {
             default:
             this.taskList = nextProps.taskList;
             this.setState({tasks: this.taskList.tasks});
+            if (nextProps.fileName) this.setState({fileName: nextProps.fileName});
         }
     }
     addTask(task) {

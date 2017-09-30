@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import { Parser } from './parser';
 import { App } from './components/App';
-//import { TaskList } from './tasklist';
 
 export const initiateMainMenu = function () {
     const { remote } = require('electron');
