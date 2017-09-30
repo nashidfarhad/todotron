@@ -1,15 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import update from 'immutability-helper';
 import { TaskComponent } from './TaskComponent';
-import {initiateMainMenu } from '../menu';
-import {ToolBar} from './ToolBar';
-import {LineNumbers} from './LineNumbers';
-import {Logo} from './icons/Logo';
+import { initiateMainMenu } from '../menu';
+import { ToolBar } from './ToolBar';
+import { LineNumbers } from './LineNumbers';
+import { Logo } from './icons/Logo';
 import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
-import {DisplayList} from './DisplayList';
-//import {ProjectList} from './ProjectList';
+import { LeftPane } from './LeftPane';
 
 export class App extends React.Component {
     constructor(props) {
@@ -57,12 +55,12 @@ export class App extends React.Component {
             <div id="main-div">
                 <Logo />
                 <ToolBar/>
-                <div className="left-pane">
-                    <h1 className="todotron">ToDoTron</h1>
-                    <h2 className="clickable" onClick={this.showAllTasks}>Total Task: {this.taskList.tasks.length}</h2>
-                    <DisplayList list={this.taskList.getContextList()} onClick={this.filterByContext} type='context'/>
-                    <DisplayList list={this.taskList.getProjectList()} onClick={this.filterByProject} type='project'/>
-                </div>
+                <LeftPane totalTaskCount={this.taskList.tasks.length}
+                          contexts={this.taskList.getContextList()}
+                          projects={this.taskList.getProjectList()}
+                          onContextItemClick={this.filterByContext}
+                          onProjectItemClick={this.filterByProject}
+                          onTotalTaskClick={this.showAllTasks} />
                 <div className="right-pane">
                     <LineNumbers lineNumbers={this.state.tasks.length} />
                     <div className="task-list">

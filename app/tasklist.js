@@ -30,9 +30,15 @@ export class TaskList {
         this.tasks.map((task) => {
             projects = projects.concat(task.projects);
         });
-        let set = Array.from(new Set(projects)).sort((a,b) => {
-            if(a !== null && b !== null)
-                return b.toLowerCase()-a.toLowerCase();
+        if (projects.length > 0) projects.concat('+none');
+        let set = Array.from(new Set(projects)).sort((a, b) => {
+            var nameA = (a || '+none').toLowerCase(),
+                nameB = (b || '+none').toLowerCase();
+            if (nameA < nameB) //sort string ascending
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0; //default return value (no sorting)
         });
         let list = {};
         for(var i = 0; i<set.length; i++){
@@ -51,9 +57,15 @@ export class TaskList {
         this.tasks.map((task) => {
             contexts = contexts.concat(task.contexts);
         });
-        let set = Array.from(new Set(contexts)).sort((a,b) => {
-            if (a !== null && b !== null)
-                return b.toLowerCase()-a.toLowerCase();
+        if (contexts.length > 0) contexts.concat('@none');
+        let set = Array.from(new Set(contexts)).sort((a, b) => {
+            var nameA = (a || '@none').toLowerCase(),
+                nameB = (b || '@none').toLowerCase();
+            if (nameA < nameB) //sort string ascending
+                return -1;
+            if (nameA > nameB)
+                return 1;
+            return 0; //default return value (no sorting)
         });
         let list = {};
         for(var i = 0; i<set.length; i++){
