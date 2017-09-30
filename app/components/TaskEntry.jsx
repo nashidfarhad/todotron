@@ -23,14 +23,19 @@ export class TaskEntry extends React.Component {
         }
     }
     render () {
+        let taskString;
+        if(this.props.selectedTask)
+            taskString = this.props.selectedTask.toString();
         return (
-            <div className="task-entry" contentEditable={true}
+            <div className="task-entry" contentEditable={true} suppressContentEditableWarning={true}
                  onKeyDown={this.handleKeyDown} >
+                 {taskString}
             </div>
         );
     }
 }
 
 TaskEntry.propTypes = {
-    addTask: PropTypes.func
+    addTask: PropTypes.func,
+    selectedTask: PropTypes.object
 }
