@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Parser } from './parser';
 import { App } from './components/App';
-import { TaskList } from './tasklist';
 
 export const initiateMainMenu = function () {
     const { remote } = require('electron');
@@ -12,25 +10,18 @@ export const initiateMainMenu = function () {
         submenu: [{
             label: 'Open',
             click() {
-                dialog.showOpenDialog({
-                    filters: [{
-                        name: 'Todo Text Files',
-                        extensions: ['txt']
-                    }]
-                }, function (fileNames) {
-                    if (fileNames === undefined) {
-                        dialog.showErrorBox("Error", "No file selected");
-                    } else {
-                        let parser = new Parser(fileNames[0]);
-                        parser.getParsedTodoList(function (taskList) {
-                            let tskList = new TaskList(taskList);
-                            ReactDOM.render( 
-                                <App taskList = { tskList } fileName = { fileNames[0] } />,
-                                document.getElementById('app')
-                            );
-                        });
-                    }
-                });
+                ReactDOM.render(
+                    <App event="open" />,
+                    document.getElementById('app')
+                );
+            }
+        }, {
+            label: 'Save',
+            click() {
+                ReactDOM.render(
+                    <App event="save" />,
+                    document.getElementById('app')
+                );
             }
         }, {
             role: 'close'

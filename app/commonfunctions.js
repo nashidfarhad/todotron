@@ -26,3 +26,40 @@ export function openFile() {
         }
     });
 }
+
+export function saveNewFile(toWrite) {
+    const { remote } = require('electron');
+    const { dialog } = remote;
+    var fs = require('fs');
+    dialog.showSaveDialog({
+        filters: [{
+            name: 'Todo Text Files',
+            extensions: ['txt']
+        }]
+    }, function (fileName) {
+        if (fileName === undefined) {
+            dialog.showErrorBox("Error", "No file selected");
+        } else {
+            fs.writeFile(fileName, toWrite, function(err){
+                if (err) dialog.showErrorBox("Error", "Couldn't write to file: " + fileName);
+            });
+            ReactDOM.render(
+                <App fileName = {fileName} event="new-save"/>,
+                document.getElementById('app')
+            );
+        }
+    });
+}
+
+export function saveFile(content, filePath) {
+    const { remote } = require('electron');
+    const { dialog } = remote;
+    var fs = require('fs');
+    if (filePath === undefined || filePath === null) {
+        dialog.showErrorBox("Error", "Not valid file: " + filePath);
+    } else {
+        fs.writeFile(filePath, content, function(err){
+            if(err) dialog.showErrorBox("Error", "Couldn't write to file: " + filePath);
+        });
+    }
+}

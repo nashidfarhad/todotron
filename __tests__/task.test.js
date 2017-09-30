@@ -51,4 +51,16 @@ describe('task', () => {
         let contexts = ['@abc', '@abc', '@adbc'];
         expect(task.contexts).toEqual(contexts);
     });
+
+    test('test toString()', () => {
+        let task = new Task();
+        task.tokens = [
+            new TaskToken('@abc', TokenTypes.CONTEXT),
+            new TaskToken('abc'),
+            new TaskToken('@adbc', TokenTypes.CONTEXT),
+            new TaskToken('due:2017-10-12', TokenTypes.TAG)
+        ];
+        let taskString = task.toString();
+        expect(taskString).toBe("");
+    });
 });
