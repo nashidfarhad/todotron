@@ -28,8 +28,8 @@ export class TaskEntry extends React.Component {
             taskString = this.props.selectedTask.toString();
         return (
             <div className="task-entry" contentEditable={true} suppressContentEditableWarning={true}
+                 dangerouslySetInnerHTML={{__html: taskString}}
                  onKeyDown={this.handleKeyDown} >
-                 {taskString}
             </div>
         );
     }
