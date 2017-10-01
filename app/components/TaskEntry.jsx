@@ -14,9 +14,12 @@ export class TaskEntry extends React.Component {
             let taskLine = event.target.innerHTML;
             if(taskLine.length > 0) {
                 let task = this.parser.parseTdTask(taskLine);
-                if(task.createdDate === null)
+                if(this.props.selectedTask == null && task.createdDate === null)
                     task.tokens.unshift(DateUtil.currentDateToken());
-                this.props.addTask(task);
+                if(this.props.selectedTask != null)
+                    this.props.updateTask(this.props.selectedTask, task);
+                else
+                    this.props.addTask(task);
                 event.target.innerHTML = "";
             }
             event.preventDefault();
@@ -37,5 +40,6 @@ export class TaskEntry extends React.Component {
 
 TaskEntry.propTypes = {
     addTask: PropTypes.func,
+    updateTask: PropTypes.func,
     selectedTask: PropTypes.object
 }

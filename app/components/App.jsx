@@ -23,6 +23,7 @@ export class App extends React.Component {
         this.filterByProject = this.filterByProject.bind(this);
         this.showAllTasks = this.showAllTasks.bind(this);
         this.saveFile = this.saveFile.bind(this);
+        this.updateTask = this.updateTask.bind(this);
     }
     componentWillMount() {
         initiateMainMenu();
@@ -46,6 +47,9 @@ export class App extends React.Component {
     }
     addTask(task) {
         this.setState({tasks: this.taskList.push(task)});
+    }
+    updateTask(oldTask, newTask) {
+        this.setState({tasks: this.taskList.update(oldTask, newTask)});
     }
     filterByContext(context) {
         this.setState({
@@ -79,7 +83,8 @@ export class App extends React.Component {
                           onTotalTaskClick={this.showAllTasks} />
                 <RightPane totalTaskCount={this.state.tasks.length}
                            tasks={this.state.tasks}
-                           addTask={this.addTask} />
+                           addTask={this.addTask}
+                           updateTask={this.updateTask} />
             </div>
         );
     }

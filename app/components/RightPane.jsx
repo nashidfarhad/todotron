@@ -11,10 +11,16 @@ export class RightPane extends React.Component {
             selectedTask: null
         };
         this.selectTaskForUpdate = this.selectTaskForUpdate.bind(this);
+        this.updateTask = this.updateTask.bind(this);
     }
 
     selectTaskForUpdate(task) {
         this.setState({ selectedTask: task });
+    }
+
+    updateTask(oldTask, newTask) {
+        this.props.updateTask(oldTask, newTask);
+        this.setState({selectedTask: null});
     }
 
     render() {
@@ -25,7 +31,9 @@ export class RightPane extends React.Component {
             <div className="right-pane">
                 <LineNumbers lineNumbers={this.props.totalTaskCount} />
                 <div className="task-list">
-                    <TaskEntry selectedTask={this.state.selectedTask} addTask={this.props.addTask} />
+                    <TaskEntry selectedTask={this.state.selectedTask} 
+                               addTask={this.props.addTask}
+                               updateTask={this.updateTask} />
                     {tasksJsx}
                 </div>
             </div>
@@ -36,5 +44,6 @@ export class RightPane extends React.Component {
 RightPane.propTypes = {
     totalTaskCount: PropTypes.number,
     tasks: PropTypes.array,
-    addTask: PropTypes.func
+    addTask: PropTypes.func,
+    updateTask: PropTypes.func,
 };
