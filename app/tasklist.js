@@ -109,7 +109,7 @@ export class TaskList {
     toString() {
         let taskList = "";
         this.tasks.map((task) => {
-            taskList += task.toString() + '\r\n';
+            taskList += task.toString() + '\n';
         });
         return taskList;
     }
