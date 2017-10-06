@@ -8,12 +8,12 @@ export class TaskEntry extends React.Component {
         super(props);
         this.handleKeyDown = this.handleKeyDown.bind(this);
         this.parser = new Parser();
+        this.taskLine = '';
     }
     handleKeyDown (event) {
         if(event.key === 'Enter') {
-            let taskLine = event.target.innerHTML;
-            if(taskLine.length > 0) {
-                let task = this.parser.parseTdTask(taskLine);
+            if(this.taskLine.length > 0) {
+                let task = this.parser.parseTdTask(this.taskLine);
                 if(this.props.selectedTask == null && task.createdDate === null)
                     task.tokens.unshift(DateUtil.currentDateToken());
                 if(this.props.selectedTask != null)
@@ -21,8 +21,12 @@ export class TaskEntry extends React.Component {
                 else
                     this.props.addTask(task);
                 event.target.innerHTML = "";
+                this.taskLine = "";
             }
             event.preventDefault();
+        }
+        else {
+            this.taskLine = event.target.innerHTML + event.key;
         }
     }
     render () {
