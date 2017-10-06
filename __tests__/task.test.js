@@ -61,6 +61,6 @@ describe('task', () => {
             new TaskToken('due:2017-10-12', TokenTypes.TAG)
         ];
         let taskString = task.toString();
-        expect(taskString).toBe("");
+        expect(taskString).toBe("@abc abc @adbc due:2017-10-12");
     });
 });
