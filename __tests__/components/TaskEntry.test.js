@@ -46,6 +46,19 @@ describe('TaskEntry', () => {
         expect(task.tokens[0].token).not.toBe(DateUtil.currentDateToken().token);
     });
 
+    test('doesn\'t set creation date when updating', () => {
+        let task = null;
+        let updateTaskFunc = function (seltask, tsk) { 
+            task = tsk; 
+        };
+        let parser = new Parser();
+        let selTask = parser.parseTdTask("test task");
+        let taskEntry = mount(<TaskEntry updateTask={updateTaskFunc} selectedTask={selTask} />);
+        taskEntry.find('div').simulate('keyDown', {key: 'test task'});
+        taskEntry.find('div').simulate('keyDown', {key: 'Enter'});
+        expect(task.tokens[0].tokenType).not.toBe(TokenTypes.CREATION_DATE);
+    });
+    
     test('sets innerHTML to empty string when enter is pressed', () => {
         let taskEntry = mount(<TaskEntry addTask={jest.genMockFunction()} />);
         taskEntry.find('div').simulate('keyDown', {key: 'c'});
