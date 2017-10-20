@@ -20,6 +20,14 @@ export class TaskList {
             alert('Wrong type pushed into TaskList. Expected Task, got ' + typeof task);
     }
 
+    update(oldTask, newTask) {
+        let idx = this.tasks.indexOf(oldTask);
+        this.tasks = update(this.tasks, {
+            $splice: [[idx, 1, newTask]]
+        });
+        return this.tasks;
+    }
+
     get getTask() {
         return this.task;
     }
@@ -101,7 +109,7 @@ export class TaskList {
     toString() {
         let taskList = "";
         this.tasks.map((task) => {
-            taskList += task.toString() + '\r\n';
+            taskList += task.toString() + '\n';
         });
         return taskList;
     }

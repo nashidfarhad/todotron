@@ -1,13 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { TaskComponent } from './TaskComponent';
 import { initiateMainMenu } from '../menu';
 import { ToolBar } from './ToolBar';
-import { LineNumbers } from './LineNumbers';
 import { Logo } from './icons/Logo';
-import { TaskEntry } from './TaskEntry';
 import { TaskList } from '../tasklist';
 import { LeftPane } from './LeftPane';
+import { RightPane } from './RightPane';
 import * as commFunc from '../commonfunctions';
 
 export class App extends React.Component {
@@ -25,6 +23,7 @@ export class App extends React.Component {
         this.filterByProject = this.filterByProject.bind(this);
         this.showAllTasks = this.showAllTasks.bind(this);
         this.saveFile = this.saveFile.bind(this);
+        this.updateTask = this.updateTask.bind(this);
     }
     componentWillMount() {
         initiateMainMenu();
@@ -49,6 +48,9 @@ export class App extends React.Component {
     addTask(task) {
         this.setState({tasks: this.taskList.push(task)});
     }
+    updateTask(oldTask, newTask) {
+        this.setState({tasks: this.taskList.update(oldTask, newTask)});
+    }
     filterByContext(context) {
         this.setState({
             tasks: this.taskList.filterByContext(context)
@@ -69,7 +71,6 @@ export class App extends React.Component {
         else commFunc.saveNewFile(this.taskList.toString());
     }
     render() {
-        let tasksJsx = this.state.tasks.map((task, index) => <TaskComponent task={task} key={index} />)
         return (
             <div id="main-div">
                 <Logo />
@@ -80,13 +81,10 @@ export class App extends React.Component {
                           onContextItemClick={this.filterByContext}
                           onProjectItemClick={this.filterByProject}
                           onTotalTaskClick={this.showAllTasks} />
-                <div className="right-pane">
-                    <LineNumbers lineNumbers={this.state.tasks.length} />
-                    <div className="task-list">
-                        <TaskEntry addTask={this.addTask} />
-                        {tasksJsx}
-                    </div>
-                </div>
+                <RightPane totalTaskCount={this.state.tasks.length}
+                           tasks={this.state.tasks}
+                           addTask={this.addTask}
+                           updateTask={this.updateTask} />
             </div>
         );
     }
